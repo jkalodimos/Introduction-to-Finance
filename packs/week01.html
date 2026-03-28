@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BA 240 — Week 1 Course Pack</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #faf9f6;
+  --text: #1a1a1a;
+  --accent: #c75000;
+  --accent-light: #fff3ec;
+  --border: #d4d0c8;
+  --muted: #6b6560;
+  --formula-bg: #f0ede6;
+  --example-border: #d4d0c8;
+  --problem-bg: #fff8f0;
+  --solution-bg: #eaf5ea;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem;
+  font-size: 1.05rem;
+}
+
+p { margin-bottom: 1rem; }
+
+/* ---- Header ---- */
+.course-header {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+.course-header .course-id {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+.course-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0.25rem 0;
+}
+.course-header .subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ---- Skills List ---- */
+.skills-list {
+  background: var(--accent-light);
+  border-radius: 5px;
+  padding: 1rem 1.4rem;
+  margin-bottom: 2rem;
+}
+.skills-list .skills-label {
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.skills-list ul {
+  list-style: none;
+  padding: 0;
+}
+.skills-list li {
+  padding: 0.2rem 0;
+  font-size: 0.95rem;
+}
+.skill-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-right: 0.4rem;
+}
+
+/* ---- Headings ---- */
+h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 2.5rem 0 0.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.35rem;
+}
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+}
+
+/* ---- Key Terms ---- */
+.key-term {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* ---- Formula Box ---- */
+.formula-box {
+  background: var(--formula-bg);
+  border-left: 4px solid var(--accent);
+  padding: 1.1rem 1.4rem;
+  margin: 1.25rem 0 1.5rem;
+  line-height: 1.9;
+}
+.formula-box .label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.formula-box .formula {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 1.05rem;
+}
+.formula-box .note {
+  font-size: 0.92rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+
+/* ---- Example (collapsible solution) ---- */
+.example-embed {
+  background: #ffffff;
+  border: 1px solid var(--example-border);
+  border-radius: 5px;
+  padding: 1.3rem 1.6rem;
+  margin: 1.5rem 0;
+  position: relative;
+}
+.example-embed::before {
+  content: attr(data-label);
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.65rem;
+  border-radius: 3px;
+  position: absolute;
+  top: -0.55rem;
+  left: 1.2rem;
+}
+.example-embed .scenario {
+  margin-top: 0.4rem;
+  margin-bottom: 0.9rem;
+  font-style: italic;
+}
+.example-embed details {
+  margin-top: 0.5rem;
+}
+.example-embed details summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--accent);
+  padding: 0.3rem 0;
+  user-select: none;
+}
+.example-embed details summary:hover {
+  text-decoration: underline;
+}
+.example-embed .steps {
+  margin: 0.5rem 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+.example-embed .steps li {
+  padding: 0.25rem 0 0.25rem 1.6rem;
+  position: relative;
+  font-size: 0.98rem;
+}
+.example-embed .steps li::before {
+  content: attr(data-step);
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  top: 0.3rem;
+}
+.example-embed .steps li .calc {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.95rem;
+}
+.example-embed .answer-line {
+  margin-top: 0.75rem;
+  padding: 0.55rem 0.85rem;
+  background: var(--solution-bg);
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.example-embed .answer-line::before {
+  content: "\2192\00a0";
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ---- Practice Problems ---- */
+.problem {
+  background: var(--problem-bg);
+  border: 1px solid #e8ddd0;
+  border-radius: 5px;
+  padding: 1.1rem 1.4rem;
+  margin: 1.25rem 0;
+}
+.problem-header {
+  margin-bottom: 0.5rem;
+}
+.problem-number {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+.skill-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-left: 0.5rem;
+}
+
+/* ---- Key Formulas Reference Table ---- */
+.formula-ref {
+  background: var(--formula-bg);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 1.2rem 1.5rem;
+  margin: 1.5rem 0;
+}
+.formula-ref h3 {
+  margin-top: 0;
+  color: var(--accent);
+}
+.formula-ref table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+.formula-ref td {
+  padding: 0.4rem 0.6rem;
+  vertical-align: top;
+  font-size: 0.95rem;
+}
+.formula-ref td:first-child {
+  font-weight: 600;
+  white-space: nowrap;
+  width: 30%;
+}
+.formula-ref td:last-child {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.95rem;
+}
+
+/* ---- Print ---- */
+@media print {
+  body { padding: 0.5in; max-width: none; font-size: 10pt; }
+  .course-header { page-break-after: avoid; }
+  .example-embed, .problem, .formula-box { page-break-inside: avoid; }
+  details { display: block; }
+  details > summary { display: none; }
+  details > *:not(summary) { display: block; }
+}
+  </style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER                                                        -->
+<!-- ============================================================ -->
+
+<div class="course-header">
+  <div class="course-id">BA 240 · Spring 2026 · Oregon State University</div>
+  <h1>Week 1 Course Pack</h1>
+  <div class="subtitle">Chapter 1: Introduction to Corporate Finance · Chapter 5: Introduction to Valuation — The Time Value of Money</div>
+</div>
+
+<div class="skills-list">
+  <div class="skills-label">This week's demonstrable skills:</div>
+  <ul>
+    <li><span class="skill-code">W1.1</span> Identify the three types of financial management decisions</li>
+    <li><span class="skill-code">W1.2</span> Explain why shareholder wealth maximization is preferred to profit maximization</li>
+    <li><span class="skill-code">W1.3</span> Compare forms of business organization</li>
+    <li><span class="skill-code">W1.4</span> Describe the agency problem and alignment mechanisms</li>
+    <li><span class="skill-code">W1.5</span> Compute future values of single cash flows</li>
+    <li><span class="skill-code">W1.6</span> Compute present values of single cash flows</li>
+    <li><span class="skill-code">W1.7</span> Solve for unknown rate or time</li>
+    <li><span class="skill-code">W1.8</span> Explain compounding and discounting intuitively</li>
+  </ul>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- INTRODUCTION TO CORPORATE FINANCE                             -->
+<!-- ============================================================ -->
+
+<h2>Introduction to Corporate Finance</h2>
+
+<p>Corporate finance is about how firms make financial decisions. Those decisions fall into three categories, and understanding what they are is the first step to understanding how the rest of this course fits together.</p>
+
+<h3>The Three Financial Management Decisions</h3>
+
+<p><span class="key-term">Capital budgeting</span> is deciding what long-term investments to make. Should a firm build a new factory? Launch a product? Acquire a competitor? The core challenge is always the same: does the expected future payoff justify the upfront cost? This question sounds simple but answering it well requires tools for comparing dollars received at different points in time — which is exactly what we'll start building in the second half of this week. We'll return to capital budgeting formally in Weeks 6 and 7 when we study net present value.</p>
+
+<p><span class="key-term">Capital structure</span> is deciding how to pay for those investments. A firm can use retained earnings (profits it already has), borrow money (bank loans, bonds), or sell ownership stakes (issuing stock). Each source has different costs and implications. Debt requires fixed payments regardless of how the business performs — miss those payments and the firm can end up in bankruptcy. Equity doesn't require fixed payments, but issuing new shares dilutes existing shareholders' ownership. The tradeoff between debt and equity is one of the central questions in finance. We'll quantify the cost of each funding source when we calculate the weighted average cost of capital in Weeks 9 and 10.</p>
+
+<p><span class="key-term">Working capital management</span> is managing the firm's short-term assets and liabilities — cash on hand, inventory, accounts receivable (money customers owe the firm), and accounts payable (money the firm owes suppliers). The goal is to ensure the firm can meet its short-term obligations while not tying up excess cash unproductively. A firm can be profitable on paper and still fail if it runs out of cash to pay its bills this month.</p>
+
+<div class="example-embed" data-label="Example 1 — Classifying Decisions">
+  <p class="scenario">
+    Red Acre Industries, a manufacturing company, faces three decisions this quarter: (a) Whether to purchase a $2 million CNC machine that would automate part of their production line. (b) Whether to finance the machine purchase with a bank loan or by issuing new shares of stock. (c) Whether to extend payment terms to their largest customer from 30 days to 60 days.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="a.">The CNC machine purchase is a <strong>capital budgeting</strong> decision — it's a long-term investment, and the firm needs to determine whether the productivity gains justify the $2 million cost.</li>
+      <li data-step="b.">Choosing between a bank loan and issuing stock is a <strong>capital structure</strong> decision — it determines the mix of debt and equity used to fund the investment.</li>
+      <li data-step="c.">Extending payment terms is a <strong>working capital management</strong> decision — it affects accounts receivable (a short-term asset) and the firm's cash conversion cycle.</li>
+    </ul>
+  </details>
+</div>
+
+<h3>The Goal of the Firm</h3>
+
+<p>If you're the financial manager, what are you actually trying to accomplish? The answer used in finance is <span class="key-term">shareholder wealth maximization</span> — making decisions that increase the market value of the firm's stock.</p>
+
+<p>You might wonder: why not maximize profit? The problem is that "profit" as an accounting concept is ambiguous in two critical ways.</p>
+
+<p>First, <em>timing matters</em>. A project that earns $1 million in profit spread over the next 20 years is not the same as one that earns $1 million next year. Accounting profit doesn't distinguish between the two. But investors care deeply about <em>when</em> they receive cash, because cash received sooner can be reinvested. Stock prices reflect the timing of expected cash flows; accounting profit does not.</p>
+
+<p>Second, <em>risk matters</em>. A guaranteed $1 million is more valuable than a 50/50 chance at $2 million or nothing, even though the "expected profit" is identical in both cases. Investors are generally risk-averse — they prefer certainty. Stock prices reflect this by discounting risky cash flows more heavily. Accounting profit doesn't adjust for risk at all.</p>
+
+<p>Because stock prices incorporate both the timing and riskiness of future cash flows, maximizing stock price is a more complete objective than maximizing accounting profit. This doesn't mean managers should manipulate stock prices in the short run — it means they should make decisions that genuinely increase the long-run value of the firm to its owners.</p>
+
+<h3>Forms of Business Organization</h3>
+
+<p>The organizational form a business takes determines who makes decisions, who bears liability for the firm's debts, how the firm is taxed, and how easily it can raise capital. There are three main forms, and the tradeoffs between them matter.</p>
+
+<p>A <span class="key-term">sole proprietorship</span> is owned by a single individual. It's the easiest form to establish — in many cases you just start doing business. The owner has complete control and keeps all the profits. But there are two significant drawbacks. First, the owner has <em>unlimited personal liability</em>: if the business can't pay its debts, creditors can go after the owner's personal assets (house, savings, car). Second, the firm's ability to raise capital is limited to the owner's personal wealth and borrowing capacity. It's hard to grow a sole proprietorship beyond a certain scale.</p>
+
+<p>A <span class="key-term">partnership</span> has two or more owners. General partners share management responsibility and unlimited liability. A <em>limited partnership</em> adds partners whose liability is capped at their investment, but those limited partners typically can't participate in day-to-day management. Partnerships can pool more capital than a sole proprietorship, but transferring ownership is difficult (you generally can't sell your partnership interest without the other partners' consent), and the unlimited liability problem persists for general partners.</p>
+
+<p>A <span class="key-term">corporation</span> is a separate legal entity from its owners. This separation is the key feature. <em>Limited liability</em> means shareholders can lose their investment but creditors cannot seize their personal assets. Corporations can raise very large amounts of capital by issuing stock to the public. Ownership is easily transferable — shares trade on exchanges without disrupting the business. The primary disadvantage is <em>double taxation</em>: the corporation pays income tax on its profits, and shareholders pay income tax again on any dividends they receive. There is also significantly more regulatory overhead — reporting requirements, board governance rules, and compliance costs.</p>
+
+<div class="example-embed" data-label="Example 2 — Choosing an Organizational Form">
+  <p class="scenario">
+    Two college friends want to start a craft brewery. They expect to need significant outside capital within two years to fund an expansion, and they're concerned about personal liability because they'll be taking on debt for expensive brewing equipment. One friend wants to form a partnership; the other wants to incorporate. Which form better suits their needs?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">The need for <strong>significant outside capital</strong> points toward incorporating. Corporations can issue stock to raise funds from outside investors. Partnerships are limited to contributions from partners and whatever the partners can personally borrow.</li>
+      <li data-step="2.">The concern about <strong>personal liability</strong> also favors a corporation. As a general partnership, both friends would have unlimited personal liability for the brewing equipment debt. As a corporation, their personal assets would be protected.</li>
+      <li data-step="3.">The tradeoff is double taxation and the cost of incorporating, but given their specific needs (capital access + liability protection), the corporation is the better fit.</li>
+    </ul>
+  </details>
+</div>
+
+<h3>The Agency Problem</h3>
+
+<p>In a sole proprietorship, the owner <em>is</em> the manager. Interests are perfectly aligned. But in a corporation, the owners (shareholders) hire managers to run the firm on their behalf. This creates a <span class="key-term">principal-agent relationship</span>: shareholders are the principals, managers are the agents. The risk is that agents may pursue their own interests at the expense of principals.</p>
+
+<p>What does this look like in practice? Managers might overspend on perks (lavish offices, corporate jets), pursue acquisitions that grow their personal empire rather than create shareholder value, or avoid risky but high-value projects because failure might cost them their job. These are all manifestations of the <span class="key-term">agency problem</span>.</p>
+
+<p>Several mechanisms exist to align managers' interests with shareholders':</p>
+
+<p><em>Compensation design</em> — Tying a significant portion of executive pay to stock price performance through stock options, restricted stock grants, or performance bonuses. If the manager's personal wealth rises and falls with the stock price, they have a direct financial incentive to maximize it.</p>
+
+<p><em>Board of directors</em> — The board is elected by shareholders to monitor management. An effective board hires and fires the CEO, approves major strategic decisions, and sets executive compensation. The quality of board oversight varies enormously across firms.</p>
+
+<p><em>The threat of takeover</em> — If managers run the firm poorly and the stock price drops, the firm becomes an attractive acquisition target. A hostile acquirer can buy the undervalued shares, take control, and replace the management team. This threat alone can discipline managers even if a takeover never actually occurs.</p>
+
+<p><em>The labor market for managers</em> — Managers who develop reputations for destroying shareholder value will find it harder to land their next position. Career concerns can substitute for formal monitoring.</p>
+
+<div class="example-embed" data-label="Example 3 — Identifying Agency Problems">
+  <p class="scenario">
+    The CEO of Blue Acre Industries announces the company will acquire a smaller competitor for $50 million — a price most analysts consider too high. The CEO's compensation package includes a bonus tied to total company revenue, which will increase significantly after the acquisition. Meanwhile, the company's stock price drops 8% on the announcement. What's happening here?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">This is an <strong>agency problem</strong>. The CEO's incentive (revenue-based bonus) is misaligned with shareholders' interests (stock price declined, suggesting the market believes the acquisition destroys value).</li>
+      <li data-step="2.">The CEO benefits personally from the acquisition through higher revenue-based compensation, even though shareholders are worse off. This is a classic case of empire-building.</li>
+      <li data-step="3.">A better compensation design would tie the CEO's bonus to stock price performance or return on invested capital rather than revenue. The board should also scrutinize whether the acquisition price is justified.</li>
+    </ul>
+  </details>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- THE TIME VALUE OF MONEY                                       -->
+<!-- ============================================================ -->
+
+<h2>The Time Value of Money</h2>
+
+<p>Here's a question: would you rather have $1,000 today or $1,000 one year from now? The answer is today — and you don't even need to think about it. This intuition is the foundation of everything we'll do for the rest of this course.</p>
+
+<p>A dollar today is worth more than a dollar in the future for three reasons. First, you could <em>invest</em> today's dollar and earn a return on it, so by next year you'd have more than a dollar. Second, <em>inflation</em> erodes purchasing power — the dollar will likely buy less next year. Third, the future is <em>uncertain</em> — there's always a chance the promised future dollar won't materialize.</p>
+
+<p>Even if we set aside inflation and risk and focus purely on the investment opportunity, the logic holds: money has a time dimension, and ignoring that dimension leads to bad decisions. The <span class="key-term">time value of money</span> (TVM) is the framework for making that time dimension precise and quantitative. Every valuation model in this course — for bonds, stocks, projects, entire companies — is ultimately an application of TVM.</p>
+
+<h3>Future Value and Compounding</h3>
+
+<p>Suppose you deposit $100 in an account earning 10% per year. After one year, you have $110 — your original $100 plus $10 of interest. Nothing surprising yet.</p>
+
+<p>But what happens in year two? You earn 10% on $110, not just on the original $100. That gives you $110 × 1.10 = $121. The extra dollar (compared to $120 you'd have with simple interest) is interest earned on the first year's $10 of interest. This is <span class="key-term">compounding</span>: the process by which interest earns interest over time.</p>
+
+<p>The amount your investment grows to after <em>t</em> periods is the <span class="key-term">future value</span> (FV):</p>
+
+<div class="formula-box">
+  <span class="label">Future Value (FV)</span>
+  <span class="formula">FV = <em>PV</em> × (1 + <em>r</em>)<sup><em>t</em></sup></span>
+  <div class="note">
+    where <em>PV</em> = present value (amount invested today), <em>r</em> = interest rate per period, <em>t</em> = number of periods
+  </div>
+</div>
+
+<p>The expression (1 + <em>r</em>)<sup><em>t</em></sup> is called the <span class="key-term">future value interest factor</span>. It tells you how many dollars you'll have in the future for each dollar invested today. For example, at <em>r</em> = 8% and <em>t</em> = 10, the factor is (1.08)<sup>10</sup> = 2.1589. Each dollar invested today becomes $2.16 in ten years.</p>
+
+<div class="example-embed" data-label="Example 4 — Future Value">
+  <p class="scenario">
+    Green Acre Industries deposits $50,000 in a corporate savings account earning 4.5% per year. What is the balance after 6 years?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify: <em>PV</em> = $50,000, <em>r</em> = 0.045, <em>t</em> = 6</li>
+      <li data-step="2.">Apply: <span class="calc">FV = $50,000 × (1.045)<sup>6</sup></span></li>
+      <li data-step="3.">Calculate: <span class="calc">FV = $50,000 × 1.30226 = $65,113.01</span></li>
+    </ul>
+    <div class="answer-line">The account balance after 6 years is $65,113.01.</div>
+  </details>
+</div>
+
+<h3>Simple Interest vs. Compound Interest</h3>
+
+<p>With <span class="key-term">simple interest</span>, you earn interest only on the original principal — the interest itself never earns interest. The total after <em>t</em> years is just PV + (PV × <em>r</em> × <em>t</em>). With <span class="key-term">compound interest</span>, each period's interest is added to the balance and earns interest in subsequent periods.</p>
+
+<p>Over short horizons the difference is small. Over long horizons it becomes enormous, because compound growth is exponential while simple growth is linear.</p>
+
+<div class="example-embed" data-label="Example 5 — Simple vs. Compound Interest">
+  <p class="scenario">
+    You invest $1,000 at 10% per year for 20 years. Compare the ending balance under simple interest vs. compound interest.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1."><strong>Simple interest:</strong> <span class="calc">$1,000 + ($1,000 × 0.10 × 20) = $1,000 + $2,000 = $3,000.00</span></li>
+      <li data-step="2."><strong>Compound interest:</strong> <span class="calc">$1,000 × (1.10)<sup>20</sup> = $1,000 × 6.72750 = $6,727.50</span></li>
+      <li data-step="3.">The compounding effect adds <span class="calc">$6,727.50 − $3,000.00 = $3,727.50</span> — more than the total simple interest earned.</li>
+    </ul>
+    <div class="answer-line">Simple interest produces $3,000.00. Compound interest produces $6,727.50. The compounding effect alone is worth $3,727.50 — more than doubling the simple interest result.</div>
+  </details>
+</div>
+
+<h3>The Power of Time</h3>
+
+<p>Of all the variables in the future value formula, time has the most dramatic effect. This is because compounding is exponential — the growth curve bends upward, and the longer you're on that curve, the steeper it gets. This is the reason financial advisors constantly emphasize starting to save early. The difference between starting at 22 and starting at 32 is not just 10 years of contributions — it's 10 years of compounding on everything that came before.</p>
+
+<div class="example-embed" data-label="Example 6 — The Power of Time">
+  <p class="scenario">
+    You're 22 years old and just started your first job. You invest $5,000 in a retirement account earning 9% per year. You never add another dollar. How much will this single deposit be worth when you're 65?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify: <em>PV</em> = $5,000, <em>r</em> = 0.09, <em>t</em> = 65 − 22 = 43</li>
+      <li data-step="2.">Apply: <span class="calc">FV = $5,000 × (1.09)<sup>43</sup></span></li>
+      <li data-step="3.">Calculate: <span class="calc">FV = $5,000 × 40.6761 = $203,380.55</span></li>
+    </ul>
+    <div class="answer-line">The single $5,000 deposit grows to $203,380.55 over 43 years.</div>
+  </details>
+</div>
+
+<p>A $5,000 investment became over $200,000 — and you never added another dime. Note that the interest rate matters enormously over long horizons too. We'll see shortly that doubling the rate more than doubles the ending balance, because the exponential effect amplifies the rate difference over time. We'll return to retirement planning with much more powerful tools (annuities) in Week 2, where we can model regular contributions over a career.</p>
+
+<h3>The Effect of the Interest Rate</h3>
+
+<p>The interest rate is in the exponent of the future value formula, which means small changes in the rate produce large changes in the outcome — especially over long horizons. This is worth seeing concretely.</p>
+
+<div class="example-embed" data-label="Example 7 — Rate Sensitivity">
+  <p class="scenario">
+    You invest $10,000 for 15 years. Compare the future value at 6% versus 12%. Note that 12% is exactly double 6%.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1."><strong>At 6%:</strong> <span class="calc">FV = $10,000 × (1.06)<sup>15</sup> = $10,000 × 2.39656 = $23,965.58</span></li>
+      <li data-step="2."><strong>At 12%:</strong> <span class="calc">FV = $10,000 × (1.12)<sup>15</sup> = $10,000 × 5.47357 = $54,735.66</span></li>
+      <li data-step="3.">The 12% investment produces <span class="calc">$54,735.66 ÷ $23,965.58 = 2.28</span> times the wealth — not merely double, even though the rate is double.</li>
+    </ul>
+    <div class="answer-line">At 6%: $23,965.58. At 12%: $54,735.66. Doubling the rate more than doubles the outcome because compounding amplifies the rate difference over time.</div>
+  </details>
+</div>
+
+
+<h3>Present Value and Discounting</h3>
+
+<p>Future value answers "what will my money grow to?" Now flip the question: if you need a specific amount in the future, how much do you need to invest <em>today</em> to get there? This is the <span class="key-term">present value</span> (PV) question.</p>
+
+<p>The process of translating future dollars into today's dollars is called <span class="key-term">discounting</span>. It's compounding in reverse. Instead of multiplying by (1 + <em>r</em>)<sup><em>t</em></sup>, you divide by it:</p>
+
+<div class="formula-box">
+  <span class="label">Present Value (PV)</span>
+  <span class="formula">PV = <em>FV</em> ÷ (1 + <em>r</em>)<sup><em>t</em></sup></span>
+  <div class="note">
+    Equivalently: PV = <em>FV</em> × [1 ÷ (1 + <em>r</em>)<sup><em>t</em></sup>]. The bracketed term is the <em>present value interest factor</em>.
+  </div>
+</div>
+
+<p>The <span class="key-term">discount rate</span> (<em>r</em>) in a present value calculation represents the <em>opportunity cost of capital</em> — the return you could earn on an alternative investment of similar risk. A higher discount rate means future cash flows are worth less today. This makes intuitive sense: if you have excellent investment opportunities available right now, a promise of money in the future is less attractive because you're giving up more by waiting.</p>
+
+<div class="example-embed" data-label="Example 8 — Present Value">
+  <p class="scenario">
+    Red Acre Industries needs $20,000 in 5 years to replace a piece of equipment. If the firm can earn 8% per year on its investments, how much must it set aside today?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify: <em>FV</em> = $20,000, <em>r</em> = 0.08, <em>t</em> = 5</li>
+      <li data-step="2.">Apply: <span class="calc">PV = $20,000 ÷ (1.08)<sup>5</sup></span></li>
+      <li data-step="3.">Calculate: <span class="calc">PV = $20,000 ÷ 1.46933 = $13,611.66</span></li>
+    </ul>
+    <div class="answer-line">Red Acre needs to set aside $13,611.66 today.</div>
+  </details>
+</div>
+
+<p>Here's a useful check: present value and future value undo each other. If Red Acre invests $13,611.66 at 8% for 5 years, it should grow to exactly $20,000: $13,611.66 × (1.08)<sup>5</sup> = $20,000.00. Whenever you calculate a present value, you can verify it by compounding back to the future value.</p>
+
+<h3>How the Discount Rate Affects Present Value</h3>
+
+<p>The higher the discount rate, the lower the present value. This is one of the most important relationships in finance, and it will appear again and again — in bond pricing (Week 3), stock valuation (Week 4), and project evaluation (Weeks 6–7).</p>
+
+<div class="example-embed" data-label="Example 9 — Discount Rate Sensitivity">
+  <p class="scenario">
+    You expect to receive $50,000 ten years from now. What is the present value of that payment at discount rates of 5%, 10%, and 15%?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1."><strong>At 5%:</strong> <span class="calc">PV = $50,000 ÷ (1.05)<sup>10</sup> = $50,000 ÷ 1.62889 = $30,695.66</span></li>
+      <li data-step="2."><strong>At 10%:</strong> <span class="calc">PV = $50,000 ÷ (1.10)<sup>10</sup> = $50,000 ÷ 2.59374 = $19,277.16</span></li>
+      <li data-step="3."><strong>At 15%:</strong> <span class="calc">PV = $50,000 ÷ (1.15)<sup>10</sup> = $50,000 ÷ 4.04556 = $12,359.24</span></li>
+    </ul>
+    <div class="answer-line">At 5%: $30,695.66. At 10%: $19,277.16. At 15%: $12,359.24. Tripling the discount rate cuts the present value by more than half.</div>
+  </details>
+</div>
+
+<p>Notice how sensitive present value is to the discount rate. The same $50,000 future payment is worth $30,696 or $12,359 depending on the rate — a $18,000 difference. When we get to bond and stock valuation, interest rate changes will drive price changes through exactly this mechanism.</p>
+
+
+<h3>Solving for the Interest Rate</h3>
+
+<p>So far we've used the TVM formula to find future values and present values, treating <em>r</em> as a known input. But sometimes you know the beginning value, the ending value, and the time, and you want to find the implied rate of return. This is common in investment analysis: you bought something, you sold it later for more, and you want to know what annual return you earned.</p>
+
+<p>Rearranging FV = PV × (1 + <em>r</em>)<sup><em>t</em></sup> to isolate <em>r</em>:</p>
+
+<div class="formula-box">
+  <span class="label">Solving for Rate (r)</span>
+  <span class="formula"><em>r</em> = (<em>FV</em> ÷ <em>PV</em>)<sup>1/<em>t</em></sup> − 1</span>
+  <div class="note">
+    Divide future value by present value, take the <em>t</em>-th root, subtract 1.
+  </div>
+</div>
+
+<p>The quantity FV ÷ PV tells you the total multiple on your investment. The <em>t</em>-th root converts that total multiple into a per-period rate. This is sometimes called the <span class="key-term">compound annual growth rate</span> (CAGR) in investment contexts.</p>
+
+<div class="example-embed" data-label="Example 10 — Finding the Rate">
+  <p class="scenario">
+    You buy a collectible for $1,000. Ten years later, you sell it for $2,593.74. What annual rate of return did you earn?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify: <em>PV</em> = $1,000, <em>FV</em> = $2,593.74, <em>t</em> = 10</li>
+      <li data-step="2.">Apply: <span class="calc"><em>r</em> = ($2,593.74 ÷ $1,000)<sup>1/10</sup> − 1</span></li>
+      <li data-step="3.">Calculate: <span class="calc"><em>r</em> = (2.59374)<sup>0.10</sup> − 1 = 1.1000 − 1 = 0.1000</span></li>
+    </ul>
+    <div class="answer-line">The annual rate of return is 10.00%.</div>
+  </details>
+</div>
+
+<div class="example-embed" data-label="Example 11 — Rate of Return on Real Estate">
+  <p class="scenario">
+    Blue Acre Industries purchased a warehouse for $200,000. Seven years later, the property is appraised at $310,000. What compound annual return has the property earned?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify: <em>PV</em> = $200,000, <em>FV</em> = $310,000, <em>t</em> = 7</li>
+      <li data-step="2.">Apply: <span class="calc"><em>r</em> = ($310,000 ÷ $200,000)<sup>1/7</sup> − 1</span></li>
+      <li data-step="3.">Calculate: <span class="calc"><em>r</em> = (1.55)<sup>0.142857</sup> − 1 = 1.0646 − 1 = 0.0646</span></li>
+    </ul>
+    <div class="answer-line">The property has earned a compound annual return of 6.46%.</div>
+  </details>
+</div>
+
+
+<h3>Solving for Time</h3>
+
+<p>The final rearrangement: you know how much you have, how much you need, and what rate you can earn, but you want to know <em>how long</em> it will take. To solve for <em>t</em>, you need logarithms. Starting from FV = PV × (1 + <em>r</em>)<sup><em>t</em></sup>:</p>
+
+<div class="formula-box">
+  <span class="label">Solving for Time (t)</span>
+  <span class="formula"><em>t</em> = ln(<em>FV</em> ÷ <em>PV</em>) ÷ ln(1 + <em>r</em>)</span>
+  <div class="note">
+    where ln is the natural logarithm — available on any scientific or financial calculator
+  </div>
+</div>
+
+<div class="example-embed" data-label="Example 12 — Solving for Time">
+  <p class="scenario">
+    You have $8,000 saved and need $15,000 for a down payment on a house. If you can earn 7% per year, how long will it take to reach your goal?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify: <em>PV</em> = $8,000, <em>FV</em> = $15,000, <em>r</em> = 0.07</li>
+      <li data-step="2.">Apply: <span class="calc"><em>t</em> = ln($15,000 ÷ $8,000) ÷ ln(1.07)</span></li>
+      <li data-step="3.">Calculate: <span class="calc"><em>t</em> = ln(1.875) ÷ ln(1.07) = 0.6286 ÷ 0.0677 = 9.29</span></li>
+    </ul>
+    <div class="answer-line">Approximately 9.29 years — about 9 years and 3.5 months. If interest is credited annually, you'd need to wait until the end of year 10.</div>
+  </details>
+</div>
+
+<h3>The Rule of 72</h3>
+
+<p>A useful shortcut: to estimate how long it takes for an investment to <em>double</em>, divide 72 by the interest rate (expressed as a whole number). This is the <span class="key-term">Rule of 72</span>.</p>
+
+<p>At 6%, money doubles in approximately 72 ÷ 6 = 12 years. The exact answer (using our formula) is ln(2) ÷ ln(1.06) = 11.90 years — the rule is remarkably accurate. At 9%, money doubles in about 72 ÷ 9 = 8 years (exact: 8.04 years). The Rule of 72 is a quick mental check — useful for back-of-the-envelope calculations and for catching errors in more detailed work.</p>
+
+
+<!-- ============================================================ -->
+<!-- KEY FORMULAS REFERENCE                                        -->
+<!-- ============================================================ -->
+
+<h2>Key Formulas Reference</h2>
+
+<div class="formula-ref">
+  <h3>Time Value of Money — Single Cash Flows</h3>
+  <table>
+    <tr>
+      <td>Future Value</td>
+      <td>FV = PV × (1 + r)<sup>t</sup></td>
+    </tr>
+    <tr>
+      <td>Present Value</td>
+      <td>PV = FV ÷ (1 + r)<sup>t</sup></td>
+    </tr>
+    <tr>
+      <td>Solving for Rate</td>
+      <td>r = (FV ÷ PV)<sup>1/t</sup> − 1</td>
+    </tr>
+    <tr>
+      <td>Solving for Time</td>
+      <td>t = ln(FV ÷ PV) ÷ ln(1 + r)</td>
+    </tr>
+    <tr>
+      <td>Rule of 72</td>
+      <td>Doubling time ≈ 72 ÷ r (where r is in %)</td>
+    </tr>
+  </table>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- PRACTICE PROBLEMS                                             -->
+<!-- ============================================================ -->
+
+<h2>Practice Problems</h2>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 1</span>
+    <span class="skill-tag">[W1.5, W1.8]</span>
+  </div>
+  <p>You invest $12,000 today in an account earning 8% per year. (a) What is the balance after 10 years? (b) What is the balance after 30 years? (c) How much of the 30-year balance is attributable to compounding (interest earned on interest) versus simple interest?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 2</span>
+    <span class="skill-tag">[W1.6, W1.8]</span>
+  </div>
+  <p>You will receive $1,000 in 15 years. What is the present value of this payment if the discount rate is (a) 6%? (b) 3%? (c) In a sentence or two, explain why the present value is higher when the discount rate is lower.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 3</span>
+    <span class="skill-tag">[W1.6]</span>
+  </div>
+  <p>Your parents want to set aside money today to help pay for college. They estimate they'll need $100,000 in 18 years. If they can earn 7% per year, how much do they need to invest now?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 4</span>
+    <span class="skill-tag">[W1.7]</span>
+  </div>
+  <p>A vintage guitar was purchased for $4,500 and sold 8 years later for $7,200. What compound annual rate of return did the guitar earn?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 5</span>
+    <span class="skill-tag">[W1.6, W1.7]</span>
+  </div>
+  <p>Green Acre Industries is offered two payment options for a piece of land it is selling: $8,000 today, or $13,000 in 5 years. The company's investments typically earn 9% per year. Which option should Green Acre choose? Show your work.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 6</span>
+    <span class="skill-tag">[W1.1, W1.2, W1.4]</span>
+  </div>
+  <p>The CEO of Red Acre Industries is evaluating two projects. Project A generates $500,000 in profit over 2 years. Project B generates $500,000 in profit over 5 years. The CEO argues they're equally valuable because total profit is the same. (a) Explain why this reasoning is flawed from the perspective of shareholder wealth maximization. (b) If the CEO prefers Project B because it ensures her job security for 5 years rather than 2, what kind of problem does this illustrate, and what mechanisms might the board use to address it?</p>
+</div>
+
+</body>
+</html>
