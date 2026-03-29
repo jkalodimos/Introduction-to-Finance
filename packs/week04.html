@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BA 240 — Week 4 Course Pack</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #faf9f6;
+  --text: #1a1a1a;
+  --accent: #c75000;
+  --accent-light: #fff3ec;
+  --border: #d4d0c8;
+  --muted: #6b6560;
+  --formula-bg: #f0ede6;
+  --example-border: #d4d0c8;
+  --problem-bg: #fff8f0;
+  --solution-bg: #eaf5ea;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem;
+  font-size: 1.05rem;
+}
+
+p { margin-bottom: 1rem; }
+
+.course-header {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+.course-header .course-id {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+.course-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0.25rem 0;
+}
+.course-header .subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.skills-list {
+  background: var(--accent-light);
+  border-radius: 5px;
+  padding: 1rem 1.4rem;
+  margin-bottom: 2rem;
+}
+.skills-list .skills-label {
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.skills-list ul {
+  list-style: none;
+  padding: 0;
+}
+.skills-list li {
+  padding: 0.2rem 0;
+  font-size: 0.95rem;
+}
+.skill-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-right: 0.4rem;
+}
+
+h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 2.5rem 0 0.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.35rem;
+}
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.key-term {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.formula-box {
+  background: var(--formula-bg);
+  border-left: 4px solid var(--accent);
+  padding: 1.1rem 1.4rem;
+  margin: 1.25rem 0 1.5rem;
+  line-height: 1.9;
+}
+.formula-box .label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.formula-box .formula {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 1.05rem;
+}
+.formula-box .note {
+  font-size: 0.92rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+
+.example-embed {
+  background: #ffffff;
+  border: 1px solid var(--example-border);
+  border-radius: 5px;
+  padding: 1.3rem 1.6rem;
+  margin: 1.5rem 0;
+  position: relative;
+}
+.example-embed::before {
+  content: attr(data-label);
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.65rem;
+  border-radius: 3px;
+  position: absolute;
+  top: -0.55rem;
+  left: 1.2rem;
+}
+.example-embed .scenario {
+  margin-top: 0.4rem;
+  margin-bottom: 0.9rem;
+  font-style: italic;
+}
+.example-embed details {
+  margin-top: 0.5rem;
+}
+.example-embed details summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--accent);
+  padding: 0.3rem 0;
+  user-select: none;
+}
+.example-embed details summary:hover {
+  text-decoration: underline;
+}
+.example-embed .steps {
+  margin: 0.5rem 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+.example-embed .steps li {
+  padding: 0.25rem 0 0.25rem 1.6rem;
+  position: relative;
+  font-size: 0.98rem;
+}
+.example-embed .steps li::before {
+  content: attr(data-step);
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  top: 0.3rem;
+}
+.example-embed .steps li .calc {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.95rem;
+}
+.example-embed .answer-line {
+  margin-top: 0.75rem;
+  padding: 0.55rem 0.85rem;
+  background: var(--solution-bg);
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.example-embed .answer-line::before {
+  content: "\2192\00a0";
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.problem {
+  background: var(--problem-bg);
+  border: 1px solid #e8ddd0;
+  border-radius: 5px;
+  padding: 1.1rem 1.4rem;
+  margin: 1.25rem 0;
+}
+.problem-header {
+  margin-bottom: 0.5rem;
+}
+.problem-number {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+.skill-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-left: 0.5rem;
+}
+
+table.formula-ref {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 2rem;
+  font-size: 0.95rem;
+}
+table.formula-ref th {
+  text-align: left;
+  font-weight: 700;
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  padding: 0.4rem 0.6rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+table.formula-ref td {
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+table.formula-ref td:nth-child(2) {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.93rem;
+}
+
+@media print {
+  body { padding: 0.5in; max-width: none; font-size: 10pt; }
+  .course-header { page-break-after: avoid; }
+  .example-embed, .problem, .formula-box { page-break-inside: avoid; }
+  details { display: block; }
+  details > summary { display: none; }
+  details > *:not(summary) { display: block; }
+}
+  </style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER -->
+<!-- ============================================================ -->
+<div class="course-header">
+  <div class="course-id">BA 240 · Spring 2026 · Oregon State University</div>
+  <h1>Week 4 Course Pack</h1>
+  <div class="subtitle">Stock Valuation — Chapters 7 (cont.) &amp; 8</div>
+</div>
+
+<div class="skills-list">
+  <div class="skills-label">This week's demonstrable skills:</div>
+  <ul>
+    <li><span class="skill-code">W4.1</span> Price a stock using the dividend discount model (zero growth)</li>
+    <li><span class="skill-code">W4.2</span> Price a stock using the constant growth DDM</li>
+    <li><span class="skill-code">W4.3</span> Apply the two-stage DDM</li>
+    <li><span class="skill-code">W4.4</span> Solve for required return or growth rate</li>
+    <li><span class="skill-code">W4.5</span> Explain the limitations of dividend-based valuation</li>
+    <li><span class="skill-code">W4.6</span> Distinguish between common and preferred stock</li>
+    <li><span class="skill-code">W4.7</span> Describe how stocks are traded</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- PART A — EQUITY SECURITIES AND THE STOCK MARKET -->
+<!-- ============================================================ -->
+<h2>Part A — Equity Securities and the Stock Market</h2>
+
+<p>Last week you learned to value bonds — fixed-income securities where the issuer promises a specific stream of cash flows. This week we turn to the other major category of securities: <span class="key-term">equity</span>. Equity represents ownership. When you buy a share of stock, you're buying a small piece of the company itself — its assets, its earnings, and its future. That ownership claim is fundamentally different from a bondholder's contractual claim, and the valuation challenge reflects that difference.</p>
+
+<p>With a bond, you know exactly what cash flows you'll receive (assuming no default): fixed coupon payments and a face value at maturity. With a stock, there are no contractual promises. Dividends can be raised, cut, or eliminated entirely. There's no maturity date — the stock exists as long as the company does. And the future cash flows depend on things that are genuinely uncertain: how well the company competes, how fast the industry grows, what the economy does. Valuing a stock, then, means making assumptions about uncertain future cash flows and discounting them back to the present — the same time value of money logic you've been building since Week 1, but applied under much greater uncertainty.</p>
+
+<h3>Common Stock vs. Preferred Stock</h3>
+
+<p>There are two broad classes of equity, and they differ in important ways.</p>
+
+<p><span class="key-term">Common stock</span> is what most people mean when they say "stock." Common shareholders are the residual claimants — they get what's left after everyone else (employees, suppliers, lenders, bondholders, the government, preferred shareholders) has been paid. That residual position is both the risk and the reward: when the company does well, common shareholders capture the upside through rising stock prices and growing dividends. When the company does poorly, common shareholders bear the losses first. Common shareholders also typically have <span class="key-term">voting rights</span>, meaning they can vote on major corporate decisions — electing the board of directors, approving mergers, and other fundamental matters. One share generally equals one vote, though some companies issue multiple classes of common stock with different voting power.</p>
+
+<p><span class="key-term">Preferred stock</span> is a hybrid — it sits between bonds and common stock in the capital structure. Preferred shareholders receive a fixed dividend (stated as a dollar amount or a percentage of par value) that must be paid before any dividends can be paid to common shareholders. If the company skips a preferred dividend, most preferred stock is <span class="key-term">cumulative</span>, meaning the missed dividends accumulate and must be paid in full before common dividends can resume. Preferred shareholders generally do not have voting rights, and they don't participate in the company's upside beyond their fixed dividend. In a liquidation, preferred shareholders are paid after bondholders but before common shareholders.</p>
+
+<p>Because preferred stock pays a fixed dividend with no maturity date, it looks a lot like a perpetuity — and that's exactly how we'll value it. Common stock, with its uncertain and potentially growing dividends, requires a more flexible model.</p>
+
+<h3>How Stocks Are Traded</h3>
+
+<p>Before we dive into valuation, it helps to understand the marketplace where stocks change hands. When a company first sells shares to the public, it does so through an <span class="key-term">initial public offering (IPO)</span> in the <span class="key-term">primary market</span>. The company receives the proceeds from that sale. After the IPO, shares trade among investors in the <span class="key-term">secondary market</span> — the company doesn't receive any money when you buy shares on the New York Stock Exchange or Nasdaq. The secondary market is where most trading happens, and it's what people usually mean when they talk about "the stock market."</p>
+
+<p>In modern markets, trading is overwhelmingly electronic. When you place an order to buy shares, it's routed to an exchange or an alternative trading venue where it's matched with a seller's order. <span class="key-term">Market makers</span> (also called dealers or specialists, depending on the exchange) play a key role by standing ready to buy or sell at publicly quoted prices. They profit from the <span class="key-term">bid-ask spread</span> — the small difference between the price at which they'll buy from you (the bid) and the price at which they'll sell to you (the ask). The bid-ask spread is essentially the transaction cost of trading.</p>
+
+<p>The secondary market matters for valuation because it's the mechanism that turns a stock's expected future cash flows into a price you can observe today. If investors collectively believe a stock's future dividends are worth $50, the price will settle near $50. If new information arrives that changes those expectations — a strong earnings report, a new product launch, a recession — the price adjusts. The models we'll build in this pack are trying to answer the same question the market is answering every second of every trading day: what is the present value of this stock's future cash flows?</p>
+
+<!-- ============================================================ -->
+<!-- PART B — THE ZERO-GROWTH DIVIDEND DISCOUNT MODEL -->
+<!-- ============================================================ -->
+<h2>Part B — The Zero-Growth Dividend Discount Model</h2>
+
+<p>The most fundamental idea in stock valuation is this: a stock is worth the present value of all the future cash flows it will generate for its owner. For stockholders, those cash flows come in the form of dividends. This insight is the foundation of the <span class="key-term">dividend discount model (DDM)</span>.</p>
+
+<p>Let's start with the simplest possible case. Suppose a stock pays a constant dividend — the same dollar amount every period, forever, with no growth. Where have you seen a cash flow like that before? It's a <span class="key-term">perpetuity</span>, exactly the kind you studied in Week 2. A stock that pays a fixed dividend <em>D</em> every period, discounted at a required return <em>r</em>, is worth:</p>
+
+<div class="formula-box">
+  <span class="label">Zero-Growth DDM (Perpetuity)</span>
+  <span class="formula">P<sub>0</sub> = <em>D</em> ÷ <em>r</em></span>
+  <div class="note">
+    where <em>P<sub>0</sub></em> = price today, <em>D</em> = constant dividend per period, <em>r</em> = required return (discount rate)
+  </div>
+</div>
+
+<p>This is the same perpetuity formula from Week 2, just applied to stock dividends instead of generic cash flows. Preferred stock is the classic application — it pays a fixed dividend with no maturity date, making it a textbook perpetuity.</p>
+
+<div class="example-embed" data-label="Example 1 — Preferred Stock Valuation">
+  <p class="scenario">
+    Blue Acre Financial has preferred stock that pays a dividend of $4.50 per share per year. If investors require an 8% return on preferred shares of similar risk, what should the preferred stock be worth?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify variables: <em>D</em> = $4.50, <em>r</em> = 0.08</li>
+      <li data-step="2.">Apply the perpetuity formula: <span class="calc">P<sub>0</sub> = D ÷ r = $4.50 ÷ 0.08</span></li>
+      <li data-step="3.">Calculate: <span class="calc">P<sub>0</sub> = $56.25</span></li>
+    </ul>
+    <div class="answer-line">Blue Acre Financial's preferred stock should trade at $56.25 per share.</div>
+  </details>
+</div>
+
+<p>Notice what the formula tells you about the relationship between price and the required return. The required return is in the denominator — so as investors demand a higher return (perhaps because the company becomes riskier), the price falls. As the required return drops, the price rises. This is the same inverse relationship you saw with bonds last week, and it's a theme that runs through all of finance: higher risk means higher required returns, which means lower prices today.</p>
+
+<p>We can also apply the zero-growth model to common stock in the special case where a company pays a steady dividend that isn't expected to change. This is unusual for common stock — most investors expect at least some growth — but it's a useful baseline.</p>
+
+<div class="example-embed" data-label="Example 2 — Zero-Growth Common Stock">
+  <p class="scenario">
+    Red Acre Industries is a mature utility company that has paid a steady dividend of $2.80 per share for the past decade and is expected to continue doing so indefinitely. If the required return on Red Acre's common stock is 11%, what is the stock worth?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify variables: <em>D</em> = $2.80, <em>r</em> = 0.11</li>
+      <li data-step="2.">Apply the zero-growth DDM: <span class="calc">P<sub>0</sub> = D ÷ r = $2.80 ÷ 0.11</span></li>
+      <li data-step="3.">Calculate: <span class="calc">P<sub>0</sub> = $25.45</span></li>
+    </ul>
+    <div class="answer-line">Red Acre Industries' stock is worth $25.45 per share under the zero-growth assumption.</div>
+  </details>
+</div>
+
+<p>Let's see how sensitive this price is to the required return. If investors become more confident in Red Acre and lower their required return, or if a broader market shift pushes required returns higher, the effect on price can be substantial.</p>
+
+<div class="example-embed" data-label="Example 3 — Required Return Sensitivity">
+  <p class="scenario">
+    Using Red Acre Industries from Example 2 (D = $2.80 per share), compare the stock price if the required return is 9% versus 13%. What does this tell you about how sensitive stock prices are to changes in the discount rate?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">At <em>r</em> = 9%: <span class="calc">P<sub>0</sub> = $2.80 ÷ 0.09 = $31.11</span></li>
+      <li data-step="2.">At <em>r</em> = 13%: <span class="calc">P<sub>0</sub> = $2.80 ÷ 0.13 = $21.54</span></li>
+      <li data-step="3.">The difference: $31.11 − $21.54 = $9.57, or roughly a 44% price swing from a 4-percentage-point change in the required return.</li>
+    </ul>
+    <div class="answer-line">At r = 9%, P₀ = $31.11. At r = 13%, P₀ = $21.54. A modest change in the required return produces a large change in stock price — just as it did with bonds.</div>
+  </details>
+</div>
+
+<p>This sensitivity is worth pausing on. A 4-percentage-point change in the required return — say, from a shift in market conditions or a change in the company's perceived risk — moved the stock price by nearly half. When we get to models with growth, this sensitivity becomes even more dramatic.</p>
+
+<!-- ============================================================ -->
+<!-- PART C — THE CONSTANT GROWTH DDM -->
+<!-- ============================================================ -->
+<h2>Part C — The Constant Growth Dividend Discount Model</h2>
+
+<p>Most companies don't pay a flat dividend forever. Successful firms grow their earnings over time and pass some of that growth along to shareholders through increasing dividends. We need a model that accounts for that growth.</p>
+
+<p>Suppose a company's dividend grows at a constant rate <em>g</em> every period, forever. If the most recent dividend paid was <em>D</em><sub>0</sub>, then next period's dividend will be <em>D</em><sub>1</sub> = <em>D</em><sub>0</sub> × (1 + <em>g</em>), the period after that will be <em>D</em><sub>2</sub> = <em>D</em><sub>0</sub> × (1 + <em>g</em>)<sup>2</sup>, and so on. The present value of this growing stream of dividends has a clean closed-form solution, known as the <span class="key-term">Gordon Growth Model</span> (or constant growth DDM):</p>
+
+<div class="formula-box">
+  <span class="label">Constant Growth DDM (Gordon Growth Model)</span>
+  <span class="formula">P<sub>0</sub> = <em>D</em><sub>1</sub> ÷ (<em>r</em> − <em>g</em>)</span>
+  <div class="note">
+    where <em>D<sub>1</sub></em> = next period's dividend = <em>D<sub>0</sub></em> × (1 + <em>g</em>), <em>r</em> = required return, <em>g</em> = constant dividend growth rate. Requires <em>r</em> &gt; <em>g</em>.
+  </div>
+</div>
+
+<p>This formula is one of the most important in all of finance. It says the price of a stock equals next year's expected dividend divided by the difference between the required return and the growth rate. A few things to notice right away:</p>
+
+<p>First, the numerator is <em>D</em><sub>1</sub>, not <em>D</em><sub>0</sub>. You're pricing the stock based on the <em>next</em> dividend the buyer will receive, not the one that was just paid. If you're given <em>D</em><sub>0</sub> (the most recent dividend), you need to grow it one period: <em>D</em><sub>1</sub> = <em>D</em><sub>0</sub> × (1 + <em>g</em>). If you're given <em>D</em><sub>1</sub> directly, you can plug it straight into the formula. Getting this right — knowing whether you've been given <em>D</em><sub>0</sub> or <em>D</em><sub>1</sub> — is one of the most common sources of error in stock valuation problems.</p>
+
+<p>Second, the model requires that <em>r</em> &gt; <em>g</em>. If the growth rate equals or exceeds the required return, the formula breaks — the denominator becomes zero or negative, producing a meaningless price. Intuitively, a stock growing faster than the rate at which you discount is generating value faster than you can account for, which can't persist indefinitely. In practice, a company might grow faster than <em>r</em> for a few years, but we'd need a different model for that phase (which is exactly what the two-stage DDM handles in Part E).</p>
+
+<p>Third, the price is extremely sensitive to both <em>r</em> and <em>g</em>. Since the difference <em>r</em> − <em>g</em> is in the denominator, small changes in either variable can cause large swings in price. This is a feature and a limitation of the model — small assumption changes produce big valuation changes, which tells you something about the inherent uncertainty in stock valuation.</p>
+
+<div class="example-embed" data-label="Example 4 — Constant Growth (D₀ Given)">
+  <p class="scenario">
+    Green Acre Agriculture just paid an annual dividend of $1.50 per share. The dividend is expected to grow at a constant rate of 5% per year. If the required return on Green Acre's stock is 12%, what should the stock price be today?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify variables: <em>D</em><sub>0</sub> = $1.50, <em>g</em> = 5%, <em>r</em> = 12%</li>
+      <li data-step="2.">Compute next year's dividend: <span class="calc">D<sub>1</sub> = $1.50 × (1 + 0.05) = $1.50 × 1.05 = $1.575</span></li>
+      <li data-step="3.">Apply the Gordon Growth Model: <span class="calc">P<sub>0</sub> = $1.575 ÷ (0.12 − 0.05) = $1.575 ÷ 0.07</span></li>
+      <li data-step="4.">Calculate: <span class="calc">P<sub>0</sub> = $22.50</span></li>
+    </ul>
+    <div class="answer-line">Green Acre Agriculture's stock is worth $22.50 per share.</div>
+  </details>
+</div>
+
+<p>Notice that you were given <em>D</em><sub>0</sub> — the dividend "just paid" — so you had to grow it one period before plugging it into the formula. If the problem had said "the next dividend will be $1.575," you could skip that step.</p>
+
+<div class="example-embed" data-label="Example 5 — Constant Growth (D₁ Given)">
+  <p class="scenario">
+    Analysts expect White Acre Logistics to pay a dividend of $3.20 per share next year. The dividend is expected to grow at 4% annually, and the required return is 10%. What is the stock worth today?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify variables: <em>D</em><sub>1</sub> = $3.20, <em>g</em> = 4%, <em>r</em> = 10%</li>
+      <li data-step="2.">Apply the Gordon Growth Model directly: <span class="calc">P<sub>0</sub> = $3.20 ÷ (0.10 − 0.04) = $3.20 ÷ 0.06</span></li>
+      <li data-step="3.">Calculate: <span class="calc">P<sub>0</sub> = $53.33</span></li>
+    </ul>
+    <div class="answer-line">White Acre Logistics' stock is worth $53.33 per share.</div>
+  </details>
+</div>
+
+<p>Now let's explore how sensitive the constant growth model is to the growth assumption. Recall from Example 4 that Green Acre Agriculture is priced at $22.50 with a 5% growth rate. What happens if we change that growth rate?</p>
+
+<div class="example-embed" data-label="Example 6 — Growth Rate Sensitivity">
+  <p class="scenario">
+    Green Acre Agriculture has D₀ = $1.50 and a required return of 12%. Compare the stock price under two scenarios: (a) the dividend growth rate is 3%, and (b) the dividend growth rate is 7%.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Scenario (a) — g = 3%: <span class="calc">D<sub>1</sub> = $1.50 × 1.03 = $1.545</span></li>
+      <li data-step="2."><span class="calc">P<sub>0</sub> = $1.545 ÷ (0.12 − 0.03) = $1.545 ÷ 0.09 = $17.17</span></li>
+      <li data-step="3.">Scenario (b) — g = 7%: <span class="calc">D<sub>1</sub> = $1.50 × 1.07 = $1.605</span></li>
+      <li data-step="4."><span class="calc">P<sub>0</sub> = $1.605 ÷ (0.12 − 0.07) = $1.605 ÷ 0.05 = $32.10</span></li>
+      <li data-step="5.">Comparison: Moving the growth rate from 3% to 7% — just four percentage points — nearly doubles the stock price from $17.17 to $32.10.</li>
+    </ul>
+    <div class="answer-line">At g = 3%, P₀ = $17.17. At g = 7%, P₀ = $32.10. Growth assumptions have an outsized effect on valuation because they compound over an infinite horizon.</div>
+  </details>
+</div>
+
+<p>This example illustrates one of the most important practical lessons in stock valuation: the growth rate assumption is enormously powerful. A four-percentage-point increase in <em>g</em> nearly doubled the price. This happens because the denominator (<em>r</em> − <em>g</em>) is small and getting smaller — you're dividing by a shrinking number, so the price accelerates upward. This is why analysts spend so much time debating growth forecasts: small disagreements about <em>g</em> translate into large disagreements about what a stock should be worth.</p>
+
+<!-- ============================================================ -->
+<!-- PART D — SOLVING FOR r AND g -->
+<!-- ============================================================ -->
+<h2>Part D — Solving for Required Return and Growth Rate</h2>
+
+<p>So far we've used the Gordon Growth Model to find the stock price given the dividend, growth rate, and required return. But the formula has four variables — if you know any three, you can solve for the fourth. In practice, two of the most useful rearrangements let you back out the required return or the implied growth rate from a stock's current market price.</p>
+
+<h3>Solving for the Required Return</h3>
+
+<p>Rearranging the Gordon Growth Model to solve for <em>r</em>:</p>
+
+<div class="formula-box">
+  <span class="label">Required Return from the DDM</span>
+  <span class="formula"><em>r</em> = (<em>D</em><sub>1</sub> ÷ P<sub>0</sub>) + <em>g</em></span>
+  <div class="note">
+    The first term (<em>D<sub>1</sub></em> ÷ <em>P<sub>0</sub></em>) is the <strong>dividend yield</strong>. The second term (<em>g</em>) is the <strong>capital gains yield</strong>. Together they equal the total required return.
+  </div>
+</div>
+
+<p>This decomposition is elegant and worth understanding. The <span class="key-term">dividend yield</span> is the return you earn from receiving dividends — it's the income component, like the coupon on a bond. The <span class="key-term">capital gains yield</span> is the return you earn from the stock price rising over time — and in a constant growth model, the price grows at exactly the same rate as dividends, which is <em>g</em>. So your total return on the stock comes from two sources: the cash dividends you receive plus the appreciation in the stock's value.</p>
+
+<p>This is analogous to what we saw with bonds: a bond's total return comes from coupon payments (income) plus any change in the bond's price as it approaches maturity. The difference is that with stocks, the "capital gains" component reflects long-run growth expectations rather than convergence to a face value.</p>
+
+<div class="example-embed" data-label="Example 7 — Solving for Required Return">
+  <p class="scenario">
+    Blue Acre Industries just paid a dividend of $2.10 per share. The dividend is expected to grow at 4.5% per year, and the stock currently trades at $48.00 per share. What is the market's implied required return on Blue Acre's stock?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify variables: <em>D</em><sub>0</sub> = $2.10, <em>g</em> = 4.5%, P<sub>0</sub> = $48.00</li>
+      <li data-step="2.">Compute next year's dividend: <span class="calc">D<sub>1</sub> = $2.10 × 1.045 = $2.1945</span></li>
+      <li data-step="3.">Compute dividend yield: <span class="calc">D<sub>1</sub> ÷ P<sub>0</sub> = $2.1945 ÷ $48.00 = 0.0457 = 4.57%</span></li>
+      <li data-step="4.">Add capital gains yield: <span class="calc">r = 4.57% + 4.50% = 9.07%</span></li>
+    </ul>
+    <div class="answer-line">The market requires a 9.07% return on Blue Acre Industries' stock: 4.57% from dividends and 4.50% from price appreciation.</div>
+  </details>
+</div>
+
+<h3>Solving for the Growth Rate</h3>
+
+<p>The same logic works in reverse. If you know the stock price, the upcoming dividend, and the required return, you can solve for the growth rate the market is implicitly assuming:</p>
+
+<div class="formula-box">
+  <span class="label">Implied Growth Rate from the DDM</span>
+  <span class="formula"><em>g</em> = <em>r</em> − (<em>D</em><sub>1</sub> ÷ P<sub>0</sub>)</span>
+  <div class="note">
+    The implied growth rate equals the required return minus the dividend yield.
+  </div>
+</div>
+
+<p>This is useful for checking whether the growth rate the market is pricing in seems reasonable. If the implied <em>g</em> is, say, 15% for a mature utility company, something is off — either the stock is overpriced or your estimate of <em>r</em> is wrong.</p>
+
+<div class="example-embed" data-label="Example 8 — Solving for Growth Rate">
+  <p class="scenario">
+    White Acre Logistics' stock trades at $62.50 per share and is expected to pay a dividend of $3.00 next year. If the required return on the stock is 11%, what dividend growth rate is the market implicitly assuming?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify variables: P<sub>0</sub> = $62.50, <em>D</em><sub>1</sub> = $3.00, <em>r</em> = 11%</li>
+      <li data-step="2.">Compute dividend yield: <span class="calc">D<sub>1</sub> ÷ P<sub>0</sub> = $3.00 ÷ $62.50 = 0.0480 = 4.80%</span></li>
+      <li data-step="3.">Solve for g: <span class="calc">g = 11.00% − 4.80% = 6.20%</span></li>
+    </ul>
+    <div class="answer-line">The market is pricing in a 6.20% annual dividend growth rate for White Acre Logistics.</div>
+  </details>
+</div>
+
+<p>The ability to decompose a stock's return into dividend yield and capital gains yield — and to reverse-engineer the growth rate implied by the market — gives you a way to interrogate stock prices rather than just accept them. We'll formalize this idea of "implied expectations" more fully when we study cost of capital in Weeks 9 and 10.</p>
+
+<!-- ============================================================ -->
+<!-- PART E — THE TWO-STAGE DIVIDEND DISCOUNT MODEL -->
+<!-- ============================================================ -->
+<h2>Part E — The Two-Stage Dividend Discount Model</h2>
+
+<p>The constant growth DDM is powerful, but it has an obvious limitation: it assumes the same growth rate forever. Many real companies don't fit that pattern. A young technology firm might be growing dividends at 20% per year right now, but no one expects that pace to last decades — eventually the company matures, competition intensifies, and growth slows to something more sustainable. The constant growth model can't handle this transition.</p>
+
+<p>The <span class="key-term">two-stage dividend discount model</span> addresses this by splitting the company's future into two phases:</p>
+
+<p><strong>Stage 1 (High-growth phase):</strong> Dividends grow at a high rate <em>g</em><sub>1</sub> for a specified number of years. You project each dividend individually and discount them back to the present.</p>
+
+<p><strong>Stage 2 (Stable-growth phase):</strong> After the high-growth period ends, the company settles into a constant growth rate <em>g</em><sub>2</sub> that persists forever. At that point, you can apply the Gordon Growth Model to compute a <span class="key-term">terminal value</span> — the stock price at the moment the company enters stable growth — and then discount that terminal value back to the present.</p>
+
+<p>The process has three steps:</p>
+
+<div class="formula-box">
+  <span class="label">Two-Stage DDM Procedure</span>
+  <span class="formula">Step 1: Project each high-growth dividend: D<sub>t</sub> = D<sub>0</sub> × (1 + g<sub>1</sub>)<sup>t</sup></span>
+  <span class="formula">Step 2: Compute terminal price: P<sub>N</sub> = D<sub>N+1</sub> ÷ (r − g<sub>2</sub>)</span>
+  <span class="formula">Step 3: P<sub>0</sub> = PV(high-growth dividends) + PV(terminal price)</span>
+  <div class="note">
+    where <em>N</em> = number of high-growth years, <em>g<sub>1</sub></em> = high growth rate, <em>g<sub>2</sub></em> = stable growth rate, and <em>D<sub>N+1</sub></em> = first stable-growth dividend = <em>D<sub>N</sub></em> × (1 + <em>g<sub>2</sub></em>)
+  </div>
+</div>
+
+<p>The terminal value is often the largest component of the total stock price — especially when the high-growth phase is short. This makes sense: the company will be in the stable-growth phase for much longer (infinitely longer, in fact), so the present value of that perpetual stream of growing dividends usually dominates the value of a few years of high-growth dividends.</p>
+
+<div class="example-embed" data-label="Example 9 — Two-Stage DDM">
+  <p class="scenario">
+    Blue Acre Technologies just paid a dividend of $1.00 per share. Analysts expect the dividend to grow at 20% per year for the next 3 years as the company captures market share in a new product line. After that, growth is expected to slow to a sustainable 4% per year. The required return is 15%. What should Blue Acre Technologies' stock be worth today?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Project high-growth dividends:<br>
+        <span class="calc">D<sub>1</sub> = $1.00 × 1.20 = $1.2000</span><br>
+        <span class="calc">D<sub>2</sub> = $1.20 × 1.20 = $1.4400</span><br>
+        <span class="calc">D<sub>3</sub> = $1.44 × 1.20 = $1.7280</span>
+      </li>
+      <li data-step="2.">Compute the first stable-growth dividend:<br>
+        <span class="calc">D<sub>4</sub> = $1.7280 × 1.04 = $1.7971</span>
+      </li>
+      <li data-step="3.">Compute terminal price at end of Year 3:<br>
+        <span class="calc">P<sub>3</sub> = D<sub>4</sub> ÷ (r − g<sub>2</sub>) = $1.7971 ÷ (0.15 − 0.04) = $1.7971 ÷ 0.11 = $16.34</span>
+      </li>
+      <li data-step="4.">Discount all cash flows back to today:<br>
+        <span class="calc">PV(D<sub>1</sub>) = $1.2000 ÷ 1.15<sup>1</sup> = $1.0435</span><br>
+        <span class="calc">PV(D<sub>2</sub>) = $1.4400 ÷ 1.15<sup>2</sup> = $1.0888</span><br>
+        <span class="calc">PV(D<sub>3</sub>) = $1.7280 ÷ 1.15<sup>3</sup> = $1.1362</span><br>
+        <span class="calc">PV(P<sub>3</sub>) = $16.34 ÷ 1.15<sup>3</sup> = $10.7421</span>
+      </li>
+      <li data-step="5.">Sum: <span class="calc">P<sub>0</sub> = $1.04 + $1.09 + $1.14 + $10.74 = $14.01</span></li>
+    </ul>
+    <div class="answer-line">Blue Acre Technologies' stock is worth $14.01 per share. Notice that $10.74 of the $14.01 (77%) comes from the terminal value — the stable-growth phase dominates the valuation.</div>
+  </details>
+</div>
+
+<p>The fact that the terminal value accounts for over three-quarters of the stock price is typical. It's also a warning: the terminal value depends on <em>g</em><sub>2</sub>, <em>r</em>, and the final high-growth dividend, so any errors in those assumptions are amplified. Getting the long-run sustainable growth rate right matters a great deal.</p>
+
+<div class="example-embed" data-label="Example 10 — Two-Stage DDM (Shorter High-Growth Phase)">
+  <p class="scenario">
+    Red Acre Biotech just paid a dividend of $2.00 per share. The company is expected to grow dividends at 25% per year for the next 2 years due to a recently approved drug. After that, growth is expected to stabilize at 5% per year. If the required return is 13%, what is the stock worth today?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Project high-growth dividends:<br>
+        <span class="calc">D<sub>1</sub> = $2.00 × 1.25 = $2.5000</span><br>
+        <span class="calc">D<sub>2</sub> = $2.50 × 1.25 = $3.1250</span>
+      </li>
+      <li data-step="2.">Compute the first stable-growth dividend:<br>
+        <span class="calc">D<sub>3</sub> = $3.1250 × 1.05 = $3.2813</span>
+      </li>
+      <li data-step="3.">Compute terminal price at end of Year 2:<br>
+        <span class="calc">P<sub>2</sub> = D<sub>3</sub> ÷ (r − g<sub>2</sub>) = $3.2813 ÷ (0.13 − 0.05) = $3.2813 ÷ 0.08 = $41.02</span>
+      </li>
+      <li data-step="4.">Discount all cash flows back to today:<br>
+        <span class="calc">PV(D<sub>1</sub>) = $2.5000 ÷ 1.13<sup>1</sup> = $2.2124</span><br>
+        <span class="calc">PV(D<sub>2</sub>) = $3.1250 ÷ 1.13<sup>2</sup> = $2.4473</span><br>
+        <span class="calc">PV(P<sub>2</sub>) = $41.02 ÷ 1.13<sup>2</sup> = $32.1213</span>
+      </li>
+      <li data-step="5.">Sum: <span class="calc">P<sub>0</sub> = $2.21 + $2.45 + $32.12 = $36.78</span></li>
+    </ul>
+    <div class="answer-line">Red Acre Biotech's stock is worth $36.78 per share. The terminal value ($32.12) accounts for 87% of the total.</div>
+  </details>
+</div>
+
+<p>Comparing Examples 9 and 10 reinforces the lesson: the longer the high-growth phase, the more you capture from those rapidly growing dividends — but the terminal value still tends to dominate. The two-stage model is a significant improvement over the constant growth DDM when a company's current growth rate is clearly unsustainable, but it still requires you to choose when growth transitions and what the long-run rate will be. In practice, analysts often test multiple scenarios to see how sensitive the valuation is to those assumptions.</p>
+
+<!-- ============================================================ -->
+<!-- PART F — LIMITATIONS OF DIVIDEND-BASED VALUATION -->
+<!-- ============================================================ -->
+<h2>Part F — Limitations of Dividend-Based Valuation</h2>
+
+<p>The dividend discount model is a clean, intuitive framework, and it captures a deep truth: a stock's value ultimately comes from the cash flows it delivers to its owners. But the DDM has real limitations that you should understand.</p>
+
+<p><strong>What if the company doesn't pay dividends?</strong> Many successful companies — particularly younger, high-growth firms — don't pay dividends at all. They reinvest all their earnings back into the business. Amazon didn't pay a dividend for decades; neither did Google, Facebook, or Tesla for years. If <em>D</em> = 0, the DDM gives you a price of zero, which is obviously wrong for a company worth hundreds of billions of dollars. The DDM only works for companies that actually pay (or are expected to pay) dividends. For non-dividend-paying firms, analysts use alternative models — such as discounted free cash flow models or earnings-based approaches — that we won't cover in this course but that you'd encounter in more advanced finance classes.</p>
+
+<p><strong>Sensitivity to assumptions.</strong> As we saw in Examples 3 and 6, small changes in <em>r</em> or <em>g</em> produce large changes in the stock price. This isn't a flaw of the model per se — it's telling you something real about the nature of stock valuation — but it means the model's output is only as good as your inputs. If your growth estimate is off by 1%, your price estimate could be off by 20% or more. In practice, this means the DDM is better at providing a range of reasonable valuations (given a range of assumptions) than a single precise price.</p>
+
+<p><strong>The g &lt; r constraint.</strong> The Gordon Growth Model requires that the growth rate be strictly less than the required return. This is reasonable in the long run — no company can grow faster than the economy forever — but it means the constant growth model can't be applied to companies that are currently growing faster than their cost of equity. The two-stage model partially addresses this, but the eventual stable growth rate still needs to satisfy the constraint.</p>
+
+<p><strong>Constant growth is a simplification.</strong> Even in the two-stage model, you're assuming the company snaps from one growth rate to another overnight. Real companies transition gradually. More sophisticated models (three-stage models, H-models) can handle smoother transitions, but they require more assumptions and more judgment.</p>
+
+<p>Despite these limitations, the DDM remains foundational. It teaches you to think about valuation as a discounted cash flow exercise, it decomposes return into dividend yield and capital gains yield, and it shows you exactly how growth expectations are embedded in stock prices. We'll return to the ideas in the DDM when we study the cost of equity in Week 9 — specifically, you'll use the DDM formula to estimate what return investors require on a company's stock, which feeds into the firm's overall cost of capital.</p>
+
+<!-- ============================================================ -->
+<!-- KEY FORMULAS REFERENCE -->
+<!-- ============================================================ -->
+<h2>Key Formulas Reference</h2>
+
+<table class="formula-ref">
+  <thead>
+    <tr>
+      <th>Formula</th>
+      <th>Expression</th>
+      <th>Use</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Zero-Growth DDM</td>
+      <td>P₀ = D ÷ r</td>
+      <td>Preferred stock; constant-dividend common stock</td>
+    </tr>
+    <tr>
+      <td>Constant Growth DDM</td>
+      <td>P₀ = D₁ ÷ (r − g)</td>
+      <td>Common stock with steady dividend growth (r &gt; g)</td>
+    </tr>
+    <tr>
+      <td>Next Dividend</td>
+      <td>D₁ = D₀ × (1 + g)</td>
+      <td>Growing last paid dividend by one period</td>
+    </tr>
+    <tr>
+      <td>Required Return</td>
+      <td>r = (D₁ ÷ P₀) + g</td>
+      <td>Decomposition into dividend yield + capital gains yield</td>
+    </tr>
+    <tr>
+      <td>Implied Growth Rate</td>
+      <td>g = r − (D₁ ÷ P₀)</td>
+      <td>Back out growth assumption from market price</td>
+    </tr>
+    <tr>
+      <td>Two-Stage Terminal Price</td>
+      <td>P<sub>N</sub> = D<sub>N+1</sub> ÷ (r − g₂)</td>
+      <td>Price at end of high-growth phase</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ============================================================ -->
+<!-- PRACTICE PROBLEMS -->
+<!-- ============================================================ -->
+<h2>Practice Problems</h2>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 1</span>
+    <span class="skill-tag">[W4.1]</span>
+  </div>
+  <p>Green Acre Financial has preferred stock with a stated annual dividend of $5.25 per share. If the required return on comparable preferred stocks is 7%, what should Green Acre's preferred shares be worth?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 2</span>
+    <span class="skill-tag">[W4.2]</span>
+  </div>
+  <p>Blue Acre Manufacturing just paid an annual dividend of $1.80 per share. Dividends are expected to grow at a constant rate of 6% per year. If the required return is 14%, what is the stock worth today?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 3</span>
+    <span class="skill-tag">[W4.4]</span>
+  </div>
+  <p>Red Acre Energy just paid a dividend of $1.40 per share. The stock currently trades at $35.00, and dividends are expected to grow at 5% per year. What total return is the market expecting on Red Acre's stock? What portion of that return comes from dividends, and what portion comes from capital gains?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 4</span>
+    <span class="skill-tag">[W4.4]</span>
+  </div>
+  <p>White Acre Retail's stock trades at $55.00 per share. The company expects to pay a dividend of $2.20 next year, and investors require a 9% return. What dividend growth rate is the market pricing in? Does this seem reasonable for a retail company? Explain briefly.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 5</span>
+    <span class="skill-tag">[W4.3]</span>
+  </div>
+  <p>Green Acre Pharmaceuticals just paid a dividend of $1.60 per share. Analysts expect the dividend to grow at 18% per year for the next 3 years due to a new drug approval, then slow to a long-run growth rate of 3%. If the required return is 11%, what should the stock be worth today? What percentage of the stock's value comes from the terminal value?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 6</span>
+    <span class="skill-tag">[W4.1, W4.2]</span>
+  </div>
+  <p>You're comparing two stocks, both with a 10% required return. Stock A pays a constant $4.00 dividend per year with no growth expected. Stock B just paid a dividend of $2.00 but is expected to grow at 6% per year. (a) What is each stock worth today? (b) Stock B currently pays a much smaller dividend than Stock A. Explain why it's worth more.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 7</span>
+    <span class="skill-tag">[W4.5, W4.6]</span>
+  </div>
+  <p>A classmate says, "I tried to value Amazon using the dividend discount model and got a price of zero. The DDM must be a useless model." How would you respond? In your answer, explain at least two limitations of the DDM, discuss when the model <em>is</em> appropriate, and briefly explain how preferred stock valuation differs from common stock valuation.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 8</span>
+    <span class="skill-tag">[W4.2, W4.4]</span>
+  </div>
+  <p>Red Acre Industries just paid a dividend of $3.00 per share. Dividends are expected to grow at 4% per year, and the required return is 10%. (a) What is the stock worth today? (b) What will the stock price be in 2 years (i.e., immediately after the Year 2 dividend is paid)? (c) Verify that the stock's total return for Year 1 equals 10% by computing the dividend yield and capital gains yield separately.</p>
+</div>
+
+</body>
+</html>

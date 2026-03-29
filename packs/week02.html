@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BA 240 — Week 2 Course Pack</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #faf9f6;
+  --text: #1a1a1a;
+  --accent: #c75000;
+  --accent-light: #fff3ec;
+  --border: #d4d0c8;
+  --muted: #6b6560;
+  --formula-bg: #f0ede6;
+  --example-border: #d4d0c8;
+  --problem-bg: #fff8f0;
+  --solution-bg: #eaf5ea;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem;
+  font-size: 1.05rem;
+}
+
+p { margin-bottom: 1rem; }
+
+.course-header {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+.course-header .course-id {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+.course-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0.25rem 0;
+}
+.course-header .subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.skills-list {
+  background: var(--accent-light);
+  border-radius: 5px;
+  padding: 1rem 1.4rem;
+  margin-bottom: 2rem;
+}
+.skills-list .skills-label {
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.skills-list ul {
+  list-style: none;
+  padding: 0;
+}
+.skills-list li {
+  padding: 0.2rem 0;
+  font-size: 0.95rem;
+}
+.skill-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-right: 0.4rem;
+}
+
+h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 2.5rem 0 0.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.35rem;
+}
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.key-term {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.formula-box {
+  background: var(--formula-bg);
+  border-left: 4px solid var(--accent);
+  padding: 1.1rem 1.4rem;
+  margin: 1.25rem 0 1.5rem;
+  line-height: 1.9;
+}
+.formula-box .label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.formula-box .formula {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 1.05rem;
+}
+.formula-box .note {
+  font-size: 0.92rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+
+.example-embed {
+  background: #ffffff;
+  border: 1px solid var(--example-border);
+  border-radius: 5px;
+  padding: 1.3rem 1.6rem;
+  margin: 1.5rem 0;
+  position: relative;
+}
+.example-embed::before {
+  content: attr(data-label);
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.65rem;
+  border-radius: 3px;
+  position: absolute;
+  top: -0.55rem;
+  left: 1.2rem;
+}
+.example-embed .scenario {
+  margin-top: 0.4rem;
+  margin-bottom: 0.9rem;
+  font-style: italic;
+}
+.example-embed details {
+  margin-top: 0.5rem;
+}
+.example-embed details summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--accent);
+  padding: 0.3rem 0;
+  user-select: none;
+}
+.example-embed details summary:hover {
+  text-decoration: underline;
+}
+.example-embed .steps {
+  margin: 0.5rem 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+.example-embed .steps li {
+  padding: 0.25rem 0 0.25rem 1.6rem;
+  position: relative;
+  font-size: 0.98rem;
+}
+.example-embed .steps li::before {
+  content: attr(data-step);
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  top: 0.3rem;
+}
+.example-embed .steps li .calc {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.95rem;
+}
+.example-embed .answer-line {
+  margin-top: 0.75rem;
+  padding: 0.55rem 0.85rem;
+  background: var(--solution-bg);
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.example-embed .answer-line::before {
+  content: "\2192\00a0";
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.problem {
+  background: var(--problem-bg);
+  border: 1px solid #e8ddd0;
+  border-radius: 5px;
+  padding: 1.1rem 1.4rem;
+  margin: 1.25rem 0;
+}
+.problem-header {
+  margin-bottom: 0.5rem;
+}
+.problem-number {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+.skill-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-left: 0.5rem;
+}
+
+table.amort {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75rem 0;
+  font-size: 0.95rem;
+}
+table.amort th {
+  background: var(--formula-bg);
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  padding: 0.4rem 0.6rem;
+  text-align: right;
+  border-bottom: 2px solid var(--border);
+}
+table.amort th:first-child { text-align: center; }
+table.amort td {
+  padding: 0.35rem 0.6rem;
+  text-align: right;
+  border-bottom: 1px solid var(--border);
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.9rem;
+}
+table.amort td:first-child { text-align: center; }
+
+table.formula-ref {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75rem 0;
+  font-size: 0.95rem;
+}
+table.formula-ref th {
+  background: var(--formula-bg);
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  padding: 0.4rem 0.8rem;
+  text-align: left;
+  border-bottom: 2px solid var(--border);
+}
+table.formula-ref td {
+  padding: 0.45rem 0.8rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+table.formula-ref td:last-child {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.9rem;
+}
+
+@media print {
+  body { padding: 0.5in; max-width: none; font-size: 10pt; }
+  .course-header { page-break-after: avoid; }
+  .example-embed, .problem, .formula-box { page-break-inside: avoid; }
+  details { display: block; }
+  details > summary { display: none; }
+  details > *:not(summary) { display: block; }
+}
+  </style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER                                                        -->
+<!-- ============================================================ -->
+
+<div class="course-header">
+  <div class="course-id">BA 240 · Spring 2026 · Oregon State University</div>
+  <h1>Week 2 Course Pack</h1>
+  <div class="subtitle">Discounted Cash Flows — Annuities &amp; Perpetuities (Ch. 5 cont., 6)</div>
+</div>
+
+<div class="skills-list">
+  <div class="skills-label">This week's demonstrable skills:</div>
+  <ul>
+    <li><span class="skill-code">W2.1</span> Compute FV and PV of ordinary annuities</li>
+    <li><span class="skill-code">W2.2</span> Compute PV of perpetuities</li>
+    <li><span class="skill-code">W2.3</span> Distinguish between ordinary annuities and annuities due</li>
+    <li><span class="skill-code">W2.4</span> Solve for PMT in annuity problems</li>
+    <li><span class="skill-code">W2.5</span> Convert between APR and EAR</li>
+    <li><span class="skill-code">W2.6</span> Compute loan amortization schedules</li>
+    <li><span class="skill-code">W2.7</span> Apply TVM to real-world contexts</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- PART A — ANNUITIES                                            -->
+<!-- ============================================================ -->
+
+<h2>Part A — Annuities</h2>
+
+<h3>From Single Cash Flows to Streams of Payments</h3>
+
+<p>
+Recall from Week 1 that we valued single cash flows — one lump sum, moved forward or backward through time. That's a powerful starting point, but most financial decisions don't involve just one payment. Think about a car loan: you make the same payment every month for five years. Think about retirement savings: you contribute the same amount to your 401(k) every paycheck. Think about a business that signs a lease and commits to paying $15,000 a year for the next five years.
+</p>
+
+<p>
+In each of these cases, we're dealing with a stream of equal payments made at regular intervals. Finance has a name for this: an <span class="key-term">annuity</span>. Formally, an annuity is a series of equal cash flows occurring at equal intervals for a fixed number of periods. The word comes from the Latin <em>annus</em> (year), but annuities can involve any regular interval — monthly car payments, quarterly dividend payments, or annual lease payments all qualify.
+</p>
+
+<p>
+The key insight is that you <em>could</em> value each payment individually — discount or compound each one using the single cash flow formulas from Week 1, then add them up. And that would give you the right answer. But it would be tedious, especially when you're dealing with 360 monthly mortgage payments or 30 years of retirement contributions. Annuity formulas are shortcuts that collapse all those individual calculations into one expression.
+</p>
+
+<h3>Present Value of an Ordinary Annuity</h3>
+
+<p>
+The most common type is an <span class="key-term">ordinary annuity</span>, where payments occur at the <em>end</em> of each period. When you make a car payment, it's due at the end of the month — that's an ordinary annuity. When a company pays annual rent at year-end, that's an ordinary annuity. Unless you're told otherwise, assume the annuity is ordinary.
+</p>
+
+<p>
+Suppose you'll receive a payment of <em>PMT</em> at the end of each period for <em>t</em> periods, and you can earn a rate of <em>r</em> per period. What is the present value of that entire stream? You'd discount the first payment back one period, the second payment back two periods, and so on. When you sum all those discounted values and simplify the algebra, you get:
+</p>
+
+<div class="formula-box">
+  <span class="label">Present Value of an Ordinary Annuity</span>
+  <span class="formula">PV = <em>PMT</em> × [(1 − (1 + <em>r</em>)<sup>−<em>t</em></sup>) ÷ <em>r</em>]</span>
+  <div class="note">
+    where <em>PMT</em> = payment per period, <em>r</em> = discount rate per period, <em>t</em> = number of periods. The bracketed term is called the <strong>present value annuity factor</strong>.
+  </div>
+</div>
+
+<p>
+The annuity factor does all the heavy lifting. It tells you how many "dollar-equivalents" each dollar of payment is worth today, given the discount rate and the number of periods. When you multiply the factor by the payment amount, you get the lump-sum value today that's equivalent to the entire stream.
+</p>
+
+<p>
+Two things worth noting about how this factor behaves. First, a higher discount rate <em>shrinks</em> the factor — the more aggressively you discount, the less a future stream is worth today. Second, more periods <em>increase</em> the factor — more payments means more value, all else equal. But each additional payment adds a little less than the one before it, because it's further away and gets discounted more heavily. We'll see this concretely in the next two examples.
+</p>
+
+<div class="example-embed" data-label="Example 1 — PV of an Ordinary Annuity">
+  <p class="scenario">
+    Green Acre Agriculture is leasing a piece of harvesting equipment to a neighboring farm. The lease calls for payments of $15,000 per year for 5 years, with payments arriving at the end of each year. If Green Acre's discount rate is 6%, what is this lease worth to them today?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify: <em>PMT</em> = $15,000, <em>r</em> = 0.06, <em>t</em> = 5</li>
+      <li data-step="2.">Compute the annuity factor: <span class="calc">(1 − (1.06)<sup>−5</sup>) ÷ 0.06 = (1 − 0.747258) ÷ 0.06 = 4.212364</span></li>
+      <li data-step="3.">Multiply: <span class="calc">PV = $15,000 × 4.212364 = $63,185.46</span></li>
+    </ul>
+    <div class="answer-line">The lease is worth $63,185.46 today.</div>
+  </details>
+</div>
+
+<p>
+Notice that five payments of $15,000 total $75,000 in raw cash, but the present value is only about $63,185. That gap of nearly $12,000 is the time value of money at work — you're giving up the ability to invest those funds at 6% while you wait for each payment to arrive.
+</p>
+
+<p>
+What happens if Green Acre's discount rate were higher — say 10% instead of 6%? The payments are the same, but each one is worth less in today's dollars because the opportunity cost of waiting is greater.
+</p>
+
+<div class="example-embed" data-label="Example 2 — Sensitivity to the Discount Rate">
+  <p class="scenario">
+    Same lease as Example 1 — $15,000 per year for 5 years — but now Green Acre's discount rate is 10%. What is the lease worth today? How does this compare to the 6% result?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify: <em>PMT</em> = $15,000, <em>r</em> = 0.10, <em>t</em> = 5</li>
+      <li data-step="2.">Compute the annuity factor: <span class="calc">(1 − (1.10)<sup>−5</sup>) ÷ 0.10 = (1 − 0.620921) ÷ 0.10 = 3.790787</span></li>
+      <li data-step="3.">Multiply: <span class="calc">PV = $15,000 × 3.790787 = $56,861.80</span></li>
+    </ul>
+    <div class="answer-line">The lease is worth $56,861.80 today — about $6,324 less than at 6%.</div>
+  </details>
+</div>
+
+<p>
+This comparison illustrates one of the most important relationships in finance: <strong>the present value of any future cash flow stream falls when the discount rate rises</strong>. We'll see this principle again — dramatically — when we study bond pricing in Week 3.
+</p>
+
+<h3>Future Value of an Ordinary Annuity</h3>
+
+<p>
+The PV formula answers the question "what is this stream of payments worth <em>today</em>?" But there's an equally important mirror image: "if I make regular contributions and let them compound, how much will I have at the <em>end</em>?" This is the future value of an annuity, and it's the fundamental tool behind every retirement savings calculation.
+</p>
+
+<div class="formula-box">
+  <span class="label">Future Value of an Ordinary Annuity</span>
+  <span class="formula">FV = <em>PMT</em> × [((1 + <em>r</em>)<sup><em>t</em></sup> − 1) ÷ <em>r</em>]</span>
+  <div class="note">
+    where <em>PMT</em> = payment per period, <em>r</em> = rate per period, <em>t</em> = number of periods. The bracketed term is the <strong>future value annuity factor</strong>.
+  </div>
+</div>
+
+<p>
+The logic is straightforward: the first payment has the longest to compound (it sits for <em>t</em> − 1 periods), the second-to-last payment compounds for just one period, and the very last payment doesn't compound at all — it arrives at the same moment you're measuring the future value. The formula sums all of those compounded amounts.
+</p>
+
+<div class="example-embed" data-label="Example 3 — Retirement Savings">
+  <p class="scenario">
+    You start a retirement fund and contribute $3,000 at the end of every year for 20 years. The account earns 7% per year. How much will you have accumulated at the end of 20 years?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify: <em>PMT</em> = $3,000, <em>r</em> = 0.07, <em>t</em> = 20</li>
+      <li data-step="2.">Compute the FV annuity factor: <span class="calc">((1.07)<sup>20</sup> − 1) ÷ 0.07 = (3.869684 − 1) ÷ 0.07 = 40.995492</span></li>
+      <li data-step="3.">Multiply: <span class="calc">FV = $3,000 × 40.995492 = $122,986.48</span></li>
+    </ul>
+    <div class="answer-line">You'll have $122,986.48 after 20 years.</div>
+  </details>
+</div>
+
+<p>
+You contributed a total of $60,000 over 20 years ($3,000 × 20), but you end up with nearly $123,000. The extra $63,000 is pure compounding — interest earned on your contributions, and then interest earned on that interest. The longer the horizon, the more dramatic this effect becomes. Recall from Week 1 how compound growth accelerates over time; here, that same principle applies to each payment in the stream.
+</p>
+
+<h3>Perpetuities: Annuities That Never End</h3>
+
+<p>
+What happens to the annuity formula if the payments go on forever? That is, what if <em>t</em> → ∞? This might sound like a theoretical curiosity, but it's actually quite practical. Certain financial instruments — like preferred stock and some endowments — promise to make the same payment indefinitely. A stream of equal cash flows that continues forever is called a <span class="key-term">perpetuity</span>.
+</p>
+
+<p>
+Mathematically, something elegant happens when you let <em>t</em> go to infinity in the PV annuity formula. The term (1 + <em>r</em>)<sup>−<em>t</em></sup> shrinks toward zero, which means the numerator in the annuity factor approaches 1, and the whole factor simplifies to just 1/<em>r</em>. The formula becomes remarkably clean:
+</p>
+
+<div class="formula-box">
+  <span class="label">Present Value of a Perpetuity</span>
+  <span class="formula">PV = <em>PMT</em> ÷ <em>r</em></span>
+  <div class="note">
+    where <em>PMT</em> = payment per period, <em>r</em> = discount rate per period
+  </div>
+</div>
+
+<p>
+This is one of the simplest and most useful formulas in all of finance. You'll see it again when we value preferred stock in Week 4 (a perpetuity of dividend payments) and when we study the Gordon Growth Model (a growing perpetuity).
+</p>
+
+<div class="example-embed" data-label="Example 4 — Endowed Scholarship">
+  <p class="scenario">
+    Oregon State University wants to create a permanently endowed scholarship that pays $2,500 per year to a student forever. The endowment earns 5% per year. How much must be deposited today to fund the scholarship in perpetuity?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify: <em>PMT</em> = $2,500, <em>r</em> = 0.05</li>
+      <li data-step="2.">Apply the perpetuity formula: <span class="calc">PV = $2,500 ÷ 0.05 = $50,000.00</span></li>
+    </ul>
+    <div class="answer-line">A deposit of $50,000.00 funds the scholarship forever.</div>
+  </details>
+</div>
+
+<p>
+Think about why this works: if you invest $50,000 at 5%, you earn $2,500 each year — exactly the scholarship amount. You never touch the principal, so the $50,000 stays invested and generates $2,500 again next year, and the year after that, forever. The perpetuity formula captures this self-sustaining logic in a single division.
+</p>
+
+<h3>Annuities Due: Payments at the Beginning</h3>
+
+<p>
+Everything we've done so far assumes payments at the end of each period — the ordinary annuity convention. But some payment streams start immediately. Rent is the classic example: your landlord wants payment on the first of the month, not the last. Insurance premiums, lease payments, and retirement annuity payouts often work the same way.
+</p>
+
+<p>
+An <span class="key-term">annuity due</span> is identical to an ordinary annuity except that each payment occurs at the <em>beginning</em> of the period rather than the end. Because every payment arrives one period sooner, each payment has one fewer period of discounting (for PV) or one additional period of compounding (for FV). The adjustment is simple: compute the ordinary annuity value first, then multiply by (1 + <em>r</em>).
+</p>
+
+<div class="formula-box">
+  <span class="label">Annuity Due Adjustment</span>
+  <span class="formula">Value<sub>due</sub> = Value<sub>ordinary</sub> × (1 + <em>r</em>)</span>
+  <div class="note">
+    Works for both PV and FV. Multiply the ordinary annuity result by (1 + <em>r</em>) to convert to an annuity due.
+  </div>
+</div>
+
+<div class="example-embed" data-label="Example 5 — Annuity Due (Apartment Lease)">
+  <p class="scenario">
+    You sign a one-year apartment lease at $1,200 per month, payable at the beginning of each month. If your discount rate is 0.5% per month, what is the present value of your total lease obligation?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify: <em>PMT</em> = $1,200, <em>r</em> = 0.005 per month, <em>t</em> = 12 months. Payments at beginning → annuity due.</li>
+      <li data-step="2.">First, compute the ordinary annuity PV: <span class="calc">PV<sub>ord</sub> = $1,200 × [(1 − (1.005)<sup>−12</sup>) ÷ 0.005] = $1,200 × 11.618935 = $13,942.72</span></li>
+      <li data-step="3.">Adjust for annuity due: <span class="calc">PV<sub>due</sub> = $13,942.72 × 1.005 = $14,012.43</span></li>
+    </ul>
+    <div class="answer-line">The present value of the lease is $14,012.43.</div>
+  </details>
+</div>
+
+<p>
+The annuity due is worth slightly more ($14,012.43 vs. $13,942.72) because each payment arrives one month sooner. The $69.71 difference might seem small on a monthly lease, but the same principle on larger amounts — like a business lease or retirement payout — can produce significant differences.
+</p>
+
+<!-- ============================================================ -->
+<!-- PART B — SOLVING FOR THE PAYMENT                              -->
+<!-- ============================================================ -->
+
+<h2>Part B — Solving for the Payment</h2>
+
+<p>
+So far we've computed PV or FV given a known payment. But in practice, the payment is often what you're trying to find. How much do I need to save each year to reach my retirement goal? What will my monthly car payment be? These are "solve for <em>PMT</em>" problems, and they're among the most practical applications of annuity math.
+</p>
+
+<p>
+The algebra is straightforward — just rearrange the annuity formula. If you know the present value, rate, and number of periods, you can isolate <em>PMT</em>:
+</p>
+
+<div class="formula-box">
+  <span class="label">Solving for Payment (PV known)</span>
+  <span class="formula"><em>PMT</em> = <em>PV</em> × [<em>r</em> ÷ (1 − (1 + <em>r</em>)<sup>−<em>t</em></sup>)]</span>
+  <div class="note">
+    Used for loan payments: you know how much you're borrowing (PV), the rate, and the term.
+  </div>
+</div>
+
+<div class="formula-box">
+  <span class="label">Solving for Payment (FV known)</span>
+  <span class="formula"><em>PMT</em> = <em>FV</em> × [<em>r</em> ÷ ((1 + <em>r</em>)<sup><em>t</em></sup> − 1)]</span>
+  <div class="note">
+    Used for savings goals: you know your target amount (FV), the rate, and how long you have.
+  </div>
+</div>
+
+<p>
+Let's apply both. The first is a loan payment problem — one of the most common calculations in personal finance. The second is a savings goal.
+</p>
+
+<div class="example-embed" data-label="Example 6 — Car Loan Payment">
+  <p class="scenario">
+    You take out a $25,000 car loan at 4.8% APR, compounded monthly, with a 5-year term. What is your monthly payment?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify: <em>PV</em> = $25,000, APR = 4.8%, so monthly <em>r</em> = 0.048 ÷ 12 = 0.004, <em>t</em> = 5 × 12 = 60 months</li>
+      <li data-step="2.">Apply the PMT formula: <span class="calc">PMT = $25,000 × [0.004 ÷ (1 − (1.004)<sup>−60</sup>)]</span></li>
+      <li data-step="3.">Calculate: <span class="calc">PMT = $25,000 × [0.004 ÷ (1 − 0.787005)] = $25,000 × [0.004 ÷ 0.212995] = $25,000 × 0.018780 = $469.49</span></li>
+    </ul>
+    <div class="answer-line">The monthly car payment is $469.49.</div>
+  </details>
+</div>
+
+<p>
+Over 60 months, you'll pay a total of $469.49 × 60 = $28,169.40 — meaning you pay $3,169.40 in interest on top of the $25,000 principal. Notice that the first step was converting the annual rate to a monthly rate and the annual term to months. When payments are monthly, <em>everything</em> — rate, number of periods — must be expressed in monthly terms. This is a common source of errors, so watch for it.
+</p>
+
+<div class="example-embed" data-label="Example 7 — Savings Goal">
+  <p class="scenario">
+    You want to have $50,000 saved in 10 years for a down payment on a house. You can earn 6% per year. How much must you save at the end of each year to reach your goal?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify: <em>FV</em> = $50,000, <em>r</em> = 0.06, <em>t</em> = 10</li>
+      <li data-step="2.">Compute the FV annuity factor: <span class="calc">((1.06)<sup>10</sup> − 1) ÷ 0.06 = (1.790848 − 1) ÷ 0.06 = 13.180795</span></li>
+      <li data-step="3.">Solve for PMT: <span class="calc">PMT = $50,000 ÷ 13.180795 = $3,793.40</span></li>
+    </ul>
+    <div class="answer-line">You need to save $3,793.40 per year.</div>
+  </details>
+</div>
+
+<p>
+Ten annual contributions of $3,793.40 total $37,934 in deposits. The remaining $12,066 comes from compound interest. That's the payoff for starting early and letting compounding work — a theme we introduced in Week 1 and that keeps showing up.
+</p>
+
+<!-- ============================================================ -->
+<!-- PART C — APR vs. EAR                                          -->
+<!-- ============================================================ -->
+
+<h2>Part C — APR vs. EAR</h2>
+
+<h3>Why Quoted Rates Can Be Misleading</h3>
+
+<p>
+When a bank advertises a savings account at "5.2% APR, compounded quarterly" or a credit card at "18% APR, compounded monthly," the quoted rate doesn't tell you exactly how much interest you'll actually earn or owe over a year. That's because the <span class="key-term">annual percentage rate (APR)</span> — also called the stated rate or quoted rate — is simply the periodic rate multiplied by the number of periods per year. It does not account for compounding <em>within</em> the year.
+</p>
+
+<p>
+For example, if a credit card charges 1.5% per month, the APR is 1.5% × 12 = 18%. But you don't actually owe just 18% per year, because the interest charged in January starts compounding in February, and so on. The actual annual rate, accounting for this within-year compounding, is higher. This true rate is called the <span class="key-term">effective annual rate (EAR)</span>, and it's what you actually experience.
+</p>
+
+<div class="formula-box">
+  <span class="label">Effective Annual Rate (EAR)</span>
+  <span class="formula">EAR = (1 + <em>APR</em> ÷ <em>m</em>)<sup><em>m</em></sup> − 1</span>
+  <div class="note">
+    where <em>APR</em> = annual percentage rate (quoted/stated rate), <em>m</em> = number of compounding periods per year
+  </div>
+</div>
+
+<p>
+The EAR is always greater than or equal to the APR. They're equal only when <em>m</em> = 1 (annual compounding). The more frequently interest compounds, the larger the gap between APR and EAR.
+</p>
+
+<div class="example-embed" data-label="Example 8 — Credit Card EAR">
+  <p class="scenario">
+    A credit card advertises an APR of 18%, compounded monthly. What is the effective annual rate you're actually paying?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify: APR = 0.18, <em>m</em> = 12</li>
+      <li data-step="2.">Apply the EAR formula: <span class="calc">EAR = (1 + 0.18 ÷ 12)<sup>12</sup> − 1 = (1.015)<sup>12</sup> − 1</span></li>
+      <li data-step="3.">Calculate: <span class="calc">EAR = 1.195618 − 1 = 0.1956 = 19.56%</span></li>
+    </ul>
+    <div class="answer-line">The effective annual rate is 19.56% — more than 1.5 percentage points above the quoted 18%.</div>
+  </details>
+</div>
+
+<p>
+This matters for comparison shopping. When you're choosing between two financial products — two savings accounts, two loans — the APR alone can be misleading if the compounding frequencies differ. The EAR is the true apples-to-apples comparison.
+</p>
+
+<div class="example-embed" data-label="Example 9 — Comparing Savings Accounts">
+  <p class="scenario">
+    Bank A offers a savings account at 5.2% APR, compounded quarterly. Bank B offers 5.1% APR, compounded daily. Which account actually pays more?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Bank A: APR = 0.052, <em>m</em> = 4 → <span class="calc">EAR = (1 + 0.052 ÷ 4)<sup>4</sup> − 1 = (1.013)<sup>4</sup> − 1 = 0.053023 = 5.30%</span></li>
+      <li data-step="2.">Bank B: APR = 0.051, <em>m</em> = 365 → <span class="calc">EAR = (1 + 0.051 ÷ 365)<sup>365</sup> − 1 = 0.052319 = 5.23%</span></li>
+      <li data-step="3.">Compare: Bank A's EAR (5.30%) > Bank B's EAR (5.23%)</li>
+    </ul>
+    <div class="answer-line">Bank A pays more, despite Bank B compounding more frequently. The higher APR outweighs the compounding advantage.</div>
+  </details>
+</div>
+
+<p>
+This example drives home the lesson: more frequent compounding helps, but it can't overcome a meaningfully lower stated rate. When comparing financial products, always convert to EAR first, then decide.
+</p>
+
+<!-- ============================================================ -->
+<!-- PART D — LOAN AMORTIZATION                                    -->
+<!-- ============================================================ -->
+
+<h2>Part D — Loan Amortization</h2>
+
+<h3>How Loans Get Paid Off</h3>
+
+<p>
+When you take out a loan — a mortgage, a car loan, a business term loan — your payment each period is fixed. But what's happening <em>inside</em> that payment changes over time. Each payment has two components: an interest portion (which compensates the lender for the use of their money) and a principal portion (which actually reduces what you owe). Understanding this split is called <span class="key-term">loan amortization</span>.
+</p>
+
+<p>
+Here's the key mechanism: interest each period is calculated on the <em>remaining balance</em>, not the original loan amount. In the early periods, the balance is large, so the interest portion of your payment is large and the principal portion is small. As you pay down the balance, the interest portion shrinks and the principal portion grows — even though your total payment stays the same. By the end of the loan, almost all of your payment goes toward principal.
+</p>
+
+<p>
+An <span class="key-term">amortization schedule</span> is a table that shows, for each period, the payment, the interest component, the principal component, and the remaining balance. Building one is mechanical — once you know the payment amount, you just apply the same logic period by period.
+</p>
+
+<div class="example-embed" data-label="Example 10 — Equipment Loan Amortization">
+  <p class="scenario">
+    Green Acre Agriculture takes out a $100,000 loan at 8% annual interest to purchase new irrigation equipment. The loan has a 4-year term with equal annual payments. Compute the annual payment and build the full amortization schedule.
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Solve for PMT: <span class="calc">PMT = $100,000 × [0.08 ÷ (1 − (1.08)<sup>−4</sup>)] = $100,000 × 0.301921 = $30,192.08</span></li>
+      <li data-step="2.">Build the schedule:</li>
+    </ul>
+    <table class="amort">
+      <tr><th>Year</th><th>Payment</th><th>Interest</th><th>Principal</th><th>Remaining Balance</th></tr>
+      <tr><td>0</td><td>—</td><td>—</td><td>—</td><td>$100,000.00</td></tr>
+      <tr><td>1</td><td>$30,192.08</td><td>$8,000.00</td><td>$22,192.08</td><td>$77,807.92</td></tr>
+      <tr><td>2</td><td>$30,192.08</td><td>$6,224.63</td><td>$23,967.45</td><td>$53,840.47</td></tr>
+      <tr><td>3</td><td>$30,192.08</td><td>$4,307.24</td><td>$25,884.84</td><td>$27,955.63</td></tr>
+      <tr><td>4</td><td>$30,192.08</td><td>$2,236.45</td><td>$27,955.63</td><td>$0.00</td></tr>
+    </table>
+    <div class="answer-line">Annual payment is $30,192.08. Total interest paid: $20,768.32.</div>
+  </details>
+</div>
+
+<p>
+Look at how the interest/principal split shifts over time. In Year 1, roughly 27% of the payment is interest. By Year 4, it's down to about 7%. This pattern is universal in amortizing loans — the early payments are interest-heavy, and the balance reduction accelerates over time.
+</p>
+
+<p>
+For Green Acre, total payments over four years are $30,192.08 × 4 = $120,768.32. Since the loan was $100,000, the total interest cost is $20,768.32. A manager evaluating this equipment purchase should factor this financing cost into the decision — something we'll formalize when we study net present value in Week 6.
+</p>
+
+<h3>Mortgages: The Same Idea, at Scale</h3>
+
+<p>
+A home mortgage works on exactly the same principle as Green Acre's equipment loan — just with monthly payments, a much longer term, and (usually) a much larger balance. The math is identical; only the numbers change. But the scale reveals something striking about how mortgages work in practice.
+</p>
+
+<div class="example-embed" data-label="Example 11 — Home Mortgage">
+  <p class="scenario">
+    You take out a $350,000 mortgage at 6.5% APR, compounded monthly, with a 30-year term. (a) What is your monthly payment? (b) Show the first three months of the amortization schedule. (c) How much total interest will you pay over the life of the loan?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Convert to monthly: <em>r</em> = 0.065 ÷ 12 = 0.005417, <em>t</em> = 30 × 12 = 360 months</li>
+      <li data-step="2.">(a) Solve for PMT: <span class="calc">PMT = $350,000 × [0.005417 ÷ (1 − (1.005417)<sup>−360</sup>)] = $2,212.24</span></li>
+      <li data-step="3.">(b) First three months:</li>
+    </ul>
+    <table class="amort">
+      <tr><th>Month</th><th>Payment</th><th>Interest</th><th>Principal</th><th>Balance</th></tr>
+      <tr><td>0</td><td>—</td><td>—</td><td>—</td><td>$350,000.00</td></tr>
+      <tr><td>1</td><td>$2,212.24</td><td>$1,895.83</td><td>$316.40</td><td>$349,683.60</td></tr>
+      <tr><td>2</td><td>$2,212.24</td><td>$1,894.12</td><td>$318.12</td><td>$349,365.48</td></tr>
+      <tr><td>3</td><td>$2,212.24</td><td>$1,892.40</td><td>$319.84</td><td>$349,045.63</td></tr>
+    </table>
+    <ul class="steps">
+      <li data-step="4.">(c) Total paid: <span class="calc">$2,212.24 × 360 = $796,405.71</span>. Total interest: <span class="calc">$796,405.71 − $350,000 = $446,405.71</span></li>
+    </ul>
+    <div class="answer-line">Monthly payment: $2,212.24. Total interest over 30 years: $446,405.71.</div>
+  </details>
+</div>
+
+<p>
+Read that total interest number again: $446,406. You're paying more in interest than the original loan amount. In the first month, 86% of your payment goes to interest and only $316 actually reduces the balance. This is why financial advisors talk so much about the impact of even small rate differences on mortgages — on a 30-year, $350,000 loan, each quarter-point of interest rate is worth tens of thousands of dollars over the life of the loan.
+</p>
+
+<p>
+It's also why making extra principal payments early in a mortgage is so powerful: every extra dollar you pay in Year 1 avoids 30 years of compound interest.
+</p>
+
+<h3>Perpetuities and Required Returns</h3>
+
+<p>
+Before we move to the practice problems, let's revisit perpetuities from a different angle. In Example 4, we knew the payment and the rate and found the price. But you can also rearrange the perpetuity formula to find the rate. If you know the payment and the current price, the required return is simply <em>r</em> = <em>PMT</em> / <em>PV</em>. This version shows up frequently in stock valuation — we'll formalize it in Week 4.
+</p>
+
+<div class="example-embed" data-label="Example 12 — Perpetuity Required Return">
+  <p class="scenario">
+    Red Acre Industries has preferred stock that pays an annual dividend of $4.50 per share and currently trades at $56.25. What required return are investors demanding on this preferred stock?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Preferred stock pays a fixed dividend forever → perpetuity.</li>
+      <li data-step="2.">Rearrange: <span class="calc"><em>r</em> = <em>PMT</em> ÷ <em>PV</em> = $4.50 ÷ $56.25 = 0.08 = 8.00%</span></li>
+    </ul>
+    <div class="answer-line">Investors require an 8.00% return on Red Acre's preferred stock.</div>
+  </details>
+</div>
+
+<p>
+This is a preview of how the same TVM toolkit we're building now connects directly to asset valuation. The perpetuity formula for preferred stock is essentially identical to the zero-growth dividend discount model you'll learn in Week 4 — you're just applying it to a different context.
+</p>
+
+<!-- ============================================================ -->
+<!-- KEY FORMULAS REFERENCE                                        -->
+<!-- ============================================================ -->
+
+<h2>Key Formulas Reference</h2>
+
+<table class="formula-ref">
+  <tr><th>Formula</th><th>Expression</th></tr>
+  <tr>
+    <td>PV of Ordinary Annuity</td>
+    <td>PV = PMT × [(1 − (1 + r)<sup>−t</sup>) ÷ r]</td>
+  </tr>
+  <tr>
+    <td>FV of Ordinary Annuity</td>
+    <td>FV = PMT × [((1 + r)<sup>t</sup> − 1) ÷ r]</td>
+  </tr>
+  <tr>
+    <td>PV of Perpetuity</td>
+    <td>PV = PMT ÷ r</td>
+  </tr>
+  <tr>
+    <td>Annuity Due Adjustment</td>
+    <td>Value<sub>due</sub> = Value<sub>ordinary</sub> × (1 + r)</td>
+  </tr>
+  <tr>
+    <td>Solve for PMT (PV known)</td>
+    <td>PMT = PV × [r ÷ (1 − (1 + r)<sup>−t</sup>)]</td>
+  </tr>
+  <tr>
+    <td>Solve for PMT (FV known)</td>
+    <td>PMT = FV × [r ÷ ((1 + r)<sup>t</sup> − 1)]</td>
+  </tr>
+  <tr>
+    <td>Effective Annual Rate (EAR)</td>
+    <td>EAR = (1 + APR ÷ m)<sup>m</sup> − 1</td>
+  </tr>
+</table>
+
+<!-- ============================================================ -->
+<!-- PRACTICE PROBLEMS                                             -->
+<!-- ============================================================ -->
+
+<h2>Practice Problems</h2>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 1</span>
+    <span class="skill-tag">[W2.1]</span>
+  </div>
+  <p>You win a small lottery that pays $40,000 per year for 25 years, with the first payment arriving one year from today. If your discount rate is 8%, what is this prize worth in today's dollars?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 2</span>
+    <span class="skill-tag">[W2.1]</span>
+  </div>
+  <p>You plan to save $5,500 at the end of each year for 30 years in a retirement account earning 9% annually. How much will you have when you retire?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 3</span>
+    <span class="skill-tag">[W2.2]</span>
+  </div>
+  <p>A university wants to fund a $8,000-per-year scholarship that will last forever. If the endowment earns 4% per year, how much must be donated today?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 4</span>
+    <span class="skill-tag">[W2.4, W2.7]</span>
+  </div>
+  <p>You're taking out a $180,000 mortgage at 5.5% APR, compounded monthly, for a 15-year term. What is your monthly payment?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 5</span>
+    <span class="skill-tag">[W2.5]</span>
+  </div>
+  <p>You're choosing between two savings accounts. Account A offers 6.1% APR compounded semiannually. Account B offers 6.0% APR compounded monthly. Compute the EAR for each account and determine which one actually pays more.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 6</span>
+    <span class="skill-tag">[W2.6]</span>
+  </div>
+  <p>Blue Acre Financial Services makes a $20,000 business loan to a client at 6% annual interest for 3 years with equal annual payments. Compute the annual payment and construct the full amortization schedule showing the interest component, principal component, and remaining balance for each year.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 7</span>
+    <span class="skill-tag">[W2.3]</span>
+  </div>
+  <p>Explain in your own words why an annuity due is always worth more than an otherwise identical ordinary annuity. Your explanation should reference the time value of money — don't just say "because the formula has an extra (1 + <em>r</em>)."</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 8</span>
+    <span class="skill-tag">[W2.1, W2.4, W1.5]</span>
+  </div>
+  <p>You currently have $10,000 in a savings account that earns 7% per year. You also plan to deposit an additional $2,000 at the end of each year for the next 15 years into the same account. How much will you have at the end of 15 years? (Hint: treat this as two separate pieces — a lump sum and an annuity — and add them together.)</p>
+</div>
+
+</body>
+</html>

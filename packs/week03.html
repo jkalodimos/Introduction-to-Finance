@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BA 240 — Week 3 Course Pack</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --bg: #faf9f6;
+  --text: #1a1a1a;
+  --accent: #c75000;
+  --accent-light: #fff3ec;
+  --border: #d4d0c8;
+  --muted: #6b6560;
+  --formula-bg: #f0ede6;
+  --example-border: #d4d0c8;
+  --problem-bg: #fff8f0;
+  --solution-bg: #eaf5ea;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2.5rem 2.5rem;
+  font-size: 1.05rem;
+}
+
+p { margin-bottom: 1rem; }
+
+.course-header {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+.course-header .course-id {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+.course-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0.25rem 0;
+}
+.course-header .subtitle {
+  font-size: 1rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.skills-list {
+  background: var(--accent-light);
+  border-radius: 5px;
+  padding: 1rem 1.4rem;
+  margin-bottom: 2rem;
+}
+.skills-list .skills-label {
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.skills-list ul {
+  list-style: none;
+  padding: 0;
+}
+.skills-list li {
+  padding: 0.2rem 0;
+  font-size: 0.95rem;
+}
+.skill-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin-right: 0.4rem;
+}
+
+h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 2.5rem 0 0.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.35rem;
+}
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.key-term {
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.formula-box {
+  background: var(--formula-bg);
+  border-left: 4px solid var(--accent);
+  padding: 1.1rem 1.4rem;
+  margin: 1.25rem 0 1.5rem;
+  line-height: 1.9;
+}
+.formula-box .label {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.formula-box .formula {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 1.05rem;
+}
+.formula-box .note {
+  font-size: 0.92rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+}
+
+.example-embed {
+  background: #ffffff;
+  border: 1px solid var(--example-border);
+  border-radius: 5px;
+  padding: 1.3rem 1.6rem;
+  margin: 1.5rem 0;
+  position: relative;
+}
+.example-embed::before {
+  content: attr(data-label);
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.2rem 0.65rem;
+  border-radius: 3px;
+  position: absolute;
+  top: -0.55rem;
+  left: 1.2rem;
+}
+.example-embed .scenario {
+  margin-top: 0.4rem;
+  margin-bottom: 0.9rem;
+  font-style: italic;
+}
+.example-embed details {
+  margin-top: 0.5rem;
+}
+.example-embed details summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--accent);
+  padding: 0.3rem 0;
+  user-select: none;
+}
+.example-embed details summary:hover {
+  text-decoration: underline;
+}
+.example-embed .steps {
+  margin: 0.5rem 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+.example-embed .steps li {
+  padding: 0.25rem 0 0.25rem 1.6rem;
+  position: relative;
+  font-size: 0.98rem;
+}
+.example-embed .steps li::before {
+  content: attr(data-step);
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  top: 0.3rem;
+}
+.example-embed .steps li .calc {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.95rem;
+}
+.example-embed .answer-line {
+  margin-top: 0.75rem;
+  padding: 0.55rem 0.85rem;
+  background: var(--solution-bg);
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.example-embed .answer-line::before {
+  content: "\2192\00a0";
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.problem {
+  background: var(--problem-bg);
+  border: 1px solid #e8ddd0;
+  border-radius: 5px;
+  padding: 1.1rem 1.4rem;
+  margin: 1.25rem 0;
+}
+.problem-header {
+  margin-bottom: 0.5rem;
+}
+.problem-number {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+.skill-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-left: 0.5rem;
+}
+
+table.formula-ref {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.95rem;
+}
+table.formula-ref th {
+  text-align: left;
+  background: var(--formula-bg);
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid var(--accent);
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+table.formula-ref td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+table.formula-ref td:nth-child(2) {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.9rem;
+}
+
+@media print {
+  body { padding: 0.5in; max-width: none; font-size: 10pt; }
+  .course-header { page-break-after: avoid; }
+  .example-embed, .problem, .formula-box { page-break-inside: avoid; }
+  details { display: block; }
+  details > summary { display: none; }
+  details > *:not(summary) { display: block; }
+}
+  </style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- HEADER -->
+<!-- ============================================================ -->
+<div class="course-header">
+  <div class="course-id">BA 240 · Spring 2026 · Oregon State University</div>
+  <h1>Week 3 Course Pack</h1>
+  <div class="subtitle">Interest Rates & Bond Valuation — Chapters 6 (cont.) and 7</div>
+</div>
+
+<div class="skills-list">
+  <div class="skills-label">This week's demonstrable skills:</div>
+  <ul>
+    <li><span class="skill-code">W3.1</span> Price a coupon bond given coupon rate, face value, YTM, and maturity</li>
+    <li><span class="skill-code">W3.2</span> Compute yield to maturity given a bond's price, coupon, face value, and maturity</li>
+    <li><span class="skill-code">W3.3</span> Explain the inverse relationship between bond prices and interest rates</li>
+    <li><span class="skill-code">W3.4</span> Describe interest rate risk and explain why maturity and coupon rate affect it</li>
+    <li><span class="skill-code">W3.5</span> Distinguish between coupon rate, current yield, and YTM</li>
+    <li><span class="skill-code">W3.6</span> Identify key bond features: par value, coupon, maturity, call provisions, and seniority</li>
+    <li><span class="skill-code">W3.7</span> Explain the relationship between bond ratings and yields</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- PART A: BOND BASICS & BOND FEATURES -->
+<!-- ============================================================ -->
+<h2>Part A — What Is a Bond?</h2>
+
+<p>
+  Recall from Weeks 1 and 2 that the core idea of finance is deceptively simple: a dollar today is worth more than a dollar tomorrow, and the tools of present value and future value let you compare cash flows across time. We've applied those tools to single lump sums, annuities, and perpetuities. This week, we put all of that machinery to work on one of the most important financial instruments in the world: the bond.
+</p>
+
+<p>
+  A <span class="key-term">bond</span> is a loan packaged as a tradeable security. When a corporation or government needs to borrow money, it can issue bonds to investors. The issuer promises to make a series of fixed payments over time and to repay the borrowed amount at the end. If you buy a bond, you're the lender — you're giving money today in exchange for a stream of future cash flows. The value of that bond, therefore, is just the present value of those promised cash flows. Nothing more, nothing less. That's the punchline of this entire week: <em>bond pricing is a time-value-of-money problem</em>.
+</p>
+
+<p>
+  Before we start calculating, though, you need to know the vocabulary. Bonds come with specific contractual terms, and these terms determine the exact cash flows you'll receive.
+</p>
+
+<h3>Key Bond Features</h3>
+
+<p>
+  The <span class="key-term">face value</span> (also called <span class="key-term">par value</span>) is the principal amount the issuer promises to repay at the end of the bond's life. For most corporate and government bonds, the face value is $1,000. This is the amount you get back on the last day — think of it as the original loan amount.
+</p>
+
+<p>
+  The <span class="key-term">coupon rate</span> is the annual interest rate the issuer pays, stated as a percentage of face value. A bond with a 6% coupon rate and a $1,000 face value pays 6% × $1,000 = $60 per year in interest. These periodic interest payments are called <span class="key-term">coupon payments</span>. The name is a relic of the era when bonds were physical certificates with detachable coupons that you'd clip and redeem for cash.
+</p>
+
+<p>
+  The <span class="key-term">maturity date</span> is the date on which the issuer repays the face value. The time remaining until maturity is the bond's <span class="key-term">term to maturity</span> (or just "maturity"). A bond issued in 2026 that matures in 2036 has a 10-year maturity.
+</p>
+
+<p>
+  Many bonds pay coupons <em>semiannually</em> — twice a year — rather than once. A 6% coupon bond with semiannual payments makes two payments of $30 each, six months apart. This is the default for most U.S. corporate and government bonds, so whenever a problem says "semiannual," you'll need to adjust both the coupon payment and the discount rate to a per-period basis. We'll work through that adjustment shortly.
+</p>
+
+<p>
+  Beyond these basics, bonds can have additional features that affect their risk and value:
+</p>
+
+<p>
+  A <span class="key-term">call provision</span> gives the issuer the right to buy back ("call") the bond before maturity, typically at a specified <span class="key-term">call price</span> that includes a small premium above face value. Issuers like call provisions because they can refinance if interest rates drop — just like refinancing a mortgage. As a bondholder, though, a call provision works against you: the issuer is most likely to call your bond precisely when it's most valuable to you (i.e., when rates have fallen and your bond's coupon looks generous). For this reason, callable bonds must offer a slightly higher yield to compensate investors for this risk.
+</p>
+
+<p>
+  <span class="key-term">Seniority</span> refers to a bond's priority in the event of bankruptcy. <span class="key-term">Senior bonds</span> get paid before <span class="key-term">subordinated (junior) bonds</span>, and secured bonds — those backed by specific collateral — get paid before unsecured bonds. Seniority affects the bond's risk and therefore its required yield. We'll see more about how risk maps to yield when we discuss bond ratings later this week.
+</p>
+
+<!-- ============================================================ -->
+<!-- PART B: BOND PRICING -->
+<!-- ============================================================ -->
+<h2>Part B — Pricing a Bond</h2>
+
+<p>
+  Now for the mechanics. A bond's cash flows are straightforward: a series of equal coupon payments (an annuity) plus a single lump-sum repayment of face value at maturity. The price of the bond is the present value of all of those cash flows, discounted at the bond's <span class="key-term">yield to maturity</span> (YTM) — the market's required rate of return for a bond of that risk and maturity.
+</p>
+
+<p>
+  If you think about it, you already know how to do this. The coupon payments form an ordinary annuity, and the face value is a single future cash flow. Recall from Week 2 that the present value of an annuity is <em>PMT</em> × [(1 − (1 + <em>r</em>)<sup>−<em>t</em></sup>) / <em>r</em>], and the present value of a lump sum is <em>FV</em> / (1 + <em>r</em>)<sup><em>t</em></sup>. A bond's price is simply the sum of these two pieces.
+</p>
+
+<div class="formula-box">
+  <span class="label">Bond Price</span>
+  <span class="formula">Bond Price = <em>C</em> × [1 − (1 + <em>r</em>)<sup>−<em>t</em></sup>] / <em>r</em> &nbsp;+&nbsp; <em>F</em> / (1 + <em>r</em>)<sup><em>t</em></sup></span>
+  <div class="note">
+    where <em>C</em> = coupon payment per period, <em>r</em> = yield to maturity per period, <em>t</em> = number of periods, <em>F</em> = face value
+  </div>
+</div>
+
+<p>
+  The first term is the present value of the coupon annuity. The second term is the present value of the face value repayment. Together, they give you the price a rational investor would pay for this stream of cash flows.
+</p>
+
+<p>
+  Let's work through this with Blue Acre Industries, a financial services company that's issued a 10-year bond.
+</p>
+
+<!-- EXAMPLE 1 -->
+<div class="example-embed" data-label="Example 1 — Discount Bond Pricing">
+  <p class="scenario">
+    Blue Acre Industries has a bond outstanding with a 6% annual coupon rate, a $1,000 face value, and 10 years to maturity. If the yield to maturity on comparable bonds is 8%, what is the price of this bond?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Identify the cash flows: Annual coupon = 6% × $1,000 = <span class="calc">$60</span>. Face value = $1,000 at maturity.</li>
+      <li data-step="2.">Set the discount rate and periods: <span class="calc"><em>r</em> = 0.08, <em>t</em> = 10</span></li>
+      <li data-step="3.">PV of coupons: <span class="calc">$60 × [1 − (1.08)<sup>−10</sup>] / 0.08 = $60 × 6.7101 = $402.60</span></li>
+      <li data-step="4.">PV of face value: <span class="calc">$1,000 / (1.08)<sup>10</sup> = $1,000 / 2.1589 = $463.19</span></li>
+      <li data-step="5.">Bond price = $402.60 + $463.19 = <span class="calc">$865.80</span></li>
+    </ul>
+    <div class="answer-line">The bond is priced at $865.80.</div>
+  </details>
+</div>
+
+<p>
+  Notice that this bond sells for <em>less</em> than its $1,000 face value. When a bond trades below par, we call it a <span class="key-term">discount bond</span>. Why the discount? Because the bond pays a 6% coupon, but the market demands 8%. Investors aren't willing to pay full price for a bond whose coupon rate is below the going rate — the lower price compensates by boosting the effective return up to 8%.
+</p>
+
+<p>
+  What happens if market rates are <em>below</em> the coupon rate? Let's find out.
+</p>
+
+<!-- EXAMPLE 2 -->
+<div class="example-embed" data-label="Example 2 — Premium Bond Pricing">
+  <p class="scenario">
+    Same Blue Acre bond — 6% annual coupon, $1,000 face, 10 years to maturity — but now suppose comparable bonds yield only 4%. What is the price?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Cash flows unchanged: <span class="calc"><em>C</em> = $60, <em>F</em> = $1,000</span></li>
+      <li data-step="2.">New discount rate: <span class="calc"><em>r</em> = 0.04, <em>t</em> = 10</span></li>
+      <li data-step="3.">PV of coupons: <span class="calc">$60 × [1 − (1.04)<sup>−10</sup>] / 0.04 = $60 × 8.1109 = $486.65</span></li>
+      <li data-step="4.">PV of face value: <span class="calc">$1,000 / (1.04)<sup>10</sup> = $1,000 / 1.4802 = $675.56</span></li>
+      <li data-step="5.">Bond price = $486.65 + $675.56 = <span class="calc">$1,162.22</span></li>
+    </ul>
+    <div class="answer-line">The bond is priced at $1,162.22 — a premium bond.</div>
+  </details>
+</div>
+
+<p>
+  Now the bond trades <em>above</em> par — it's a <span class="key-term">premium bond</span>. The logic is the mirror image: the bond's 6% coupon is more generous than what the market requires (4%), so investors bid the price above face value. The premium you pay offsets the "extra" coupon income, bringing your effective return back down to 4%.
+</p>
+
+<p>
+  There's a clean pattern here. Compare Examples 1 and 2 with one more scenario — what if the YTM equals the coupon rate exactly?
+</p>
+
+<!-- EXAMPLE 3 -->
+<div class="example-embed" data-label="Example 3 — The Par Bond and the Price-Yield Relationship">
+  <p class="scenario">
+    Consider three identical Blue Acre bonds (6% annual coupon, $1,000 face, 10 years), each priced at a different yield to maturity: 4%, 6%, and 8%. We already know the prices at 4% and 8%. What is the price at 6%, and what pattern emerges?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">At YTM = 4%: Price = $1,162.22 (premium — from Example 2)</li>
+      <li data-step="2.">At YTM = 6%: <span class="calc">$60 × [1 − (1.06)<sup>−10</sup>] / 0.06 + $1,000 / (1.06)<sup>10</sup> = $441.61 + $558.39 = $1,000.00</span></li>
+      <li data-step="3.">At YTM = 8%: Price = $865.80 (discount — from Example 1)</li>
+      <li data-step="4.">The pattern: When the coupon rate equals the YTM, the bond trades at exactly par. When the coupon rate is above the YTM, it trades at a premium. When the coupon rate is below the YTM, it trades at a discount.</li>
+    </ul>
+    <div class="answer-line">At YTM = 6%, the bond trades at par ($1,000.00). Bond prices and yields move in opposite directions.</div>
+  </details>
+</div>
+
+<p>
+  This is one of the most important relationships in fixed-income finance: <em>bond prices and interest rates move in opposite directions</em>. When rates rise, bond prices fall. When rates fall, bond prices rise. The reason is mechanical — you're discounting fixed cash flows at a different rate. A higher discount rate means each future dollar is worth less today, so the price drops. A lower discount rate means each future dollar is worth more today, so the price rises.
+</p>
+
+<p>
+  This inverse relationship isn't just an academic curiosity. It explains why bond investors watch Federal Reserve announcements so carefully — a rate hike means the bonds they already hold lose value. It also explains why long-duration bonds are more volatile than short-duration ones, a topic we'll return to shortly.
+</p>
+
+<h3>Semiannual Coupon Bonds</h3>
+
+<p>
+  Most bonds in practice pay coupons twice a year. The adjustment is straightforward but easy to get wrong if you're not careful: divide the annual coupon payment by 2, divide the annual YTM by 2, and multiply the number of years by 2. Everything converts to a per-period (semiannual) basis.
+</p>
+
+<div class="formula-box">
+  <span class="label">Semiannual Bond Price</span>
+  <span class="formula">Bond Price = (<em>C</em>/2) × [1 − (1 + <em>r</em>/2)<sup>−2<em>t</em></sup>] / (<em>r</em>/2) &nbsp;+&nbsp; <em>F</em> / (1 + <em>r</em>/2)<sup>2<em>t</em></sup></span>
+  <div class="note">
+    where <em>C</em> = annual coupon, <em>r</em> = annual YTM (as a stated/APR), <em>t</em> = years to maturity
+  </div>
+</div>
+
+<p>
+  Recall from Week 2 that dividing the annual rate by the number of compounding periods gives you the <em>stated</em> rate per period. This is the convention for bond markets — the quoted YTM is always a stated annual rate (an APR), not an effective annual rate. If you wanted the EAR, you'd compute (1 + <em>r</em>/2)<sup>2</sup> − 1, but for bond pricing you use the semiannual rate directly.
+</p>
+
+<!-- EXAMPLE 4 -->
+<div class="example-embed" data-label="Example 4 — Semiannual Coupon Bond">
+  <p class="scenario">
+    Red Acre Industries has an 8% coupon bond with semiannual payments, a $1,000 face value, and 15 years to maturity. If the YTM is 6%, what should this bond sell for?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Convert to semiannual: Coupon per period = <span class="calc">8% × $1,000 / 2 = $40</span>. Rate per period = <span class="calc">6% / 2 = 3%</span>. Number of periods = <span class="calc">15 × 2 = 30</span>.</li>
+      <li data-step="2.">PV of coupons: <span class="calc">$40 × [1 − (1.03)<sup>−30</sup>] / 0.03 = $40 × 19.6004 = $784.01</span></li>
+      <li data-step="3.">PV of face value: <span class="calc">$1,000 / (1.03)<sup>30</sup> = $1,000 / 2.4273 = $411.99</span></li>
+      <li data-step="4.">Bond price = $784.01 + $411.99 = <span class="calc">$1,196.00</span></li>
+    </ul>
+    <div class="answer-line">The bond is priced at $1,196.00 — a premium, because the 8% coupon exceeds the 6% YTM.</div>
+  </details>
+</div>
+
+<p>
+  The key pitfall with semiannual bonds is forgetting to adjust <em>all three</em> inputs — the coupon payment, the discount rate, <em>and</em> the number of periods. If you halve the coupon but forget to halve the rate (or vice versa), your answer will be wrong. Develop the habit of converting everything to per-period terms as your first step.
+</p>
+
+<!-- ============================================================ -->
+<!-- PART C: YIELD TO MATURITY -->
+<!-- ============================================================ -->
+<h2>Part C — Yield to Maturity</h2>
+
+<p>
+  So far we've been given a YTM and asked to find the price. But in practice, you often observe a bond's market price and need to figure out the implied yield. The <span class="key-term">yield to maturity (YTM)</span> is the discount rate that makes the present value of a bond's cash flows equal to its current market price. It's the return you'd earn if you bought the bond today and held it until maturity, assuming all coupons are reinvested at the same rate.
+</p>
+
+<p>
+  Solving for YTM is the inverse of the pricing problem. You know the price, the coupons, the face value, and the maturity — you need to find the rate <em>r</em> that makes the pricing equation hold:
+</p>
+
+<div class="formula-box">
+  <span class="label">Yield to Maturity (YTM)</span>
+  <span class="formula">Price = <em>C</em> × [1 − (1 + <em>r</em>)<sup>−<em>t</em></sup>] / <em>r</em> &nbsp;+&nbsp; <em>F</em> / (1 + <em>r</em>)<sup><em>t</em></sup></span>
+  <div class="note">
+    Solve for <em>r</em> given the bond's market price. There is no closed-form algebraic solution; use a financial calculator or trial-and-error.
+  </div>
+</div>
+
+<p>
+  Unlike solving for PV or FV, solving for <em>r</em> in the bond pricing equation can't be done with simple algebra — the rate appears in multiple places (both in the annuity factor and the lump-sum discount factor), so you need either a financial calculator, a spreadsheet solver, or trial-and-error. On a financial calculator, you enter <em>N</em> (periods), <em>PMT</em> (coupon), <em>FV</em> (face value), and <em>PV</em> (negative of the price), then compute <em>I/Y</em>.
+</p>
+
+<p>
+  The trial-and-error approach works too and builds good intuition. You start by guessing a rate, computing the implied price, and then adjusting: if your computed price is too high, the rate must be too low (remember the inverse relationship), so you try a higher rate.
+</p>
+
+<!-- EXAMPLE 5 -->
+<div class="example-embed" data-label="Example 5 — Solving for YTM">
+  <p class="scenario">
+    A corporate bond pays a 7% annual coupon on a $1,000 face value and has 8 years remaining to maturity. If the bond is currently trading at $1,065, what is its yield to maturity?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Known values: <span class="calc"><em>C</em> = $70, <em>F</em> = $1,000, <em>t</em> = 8, Price = $1,065</span></li>
+      <li data-step="2.">Since the bond trades at a premium (price > par), we know the YTM must be <em>less</em> than the 7% coupon rate.</li>
+      <li data-step="3.">Try <em>r</em> = 6%: Price = $70 × 6.2098 + $1,000 / 1.5938 = $434.69 + $627.41 = $1,062.10. Too low — need a slightly lower rate.</li>
+      <li data-step="4.">Try <em>r</em> = 5.96%: Price = $70 × 6.2196 + $1,000 / 1.5890 = $435.37 + $629.31 = $1,064.68. Very close to $1,065.</li>
+      <li data-step="5.">Using a financial calculator: <span class="calc">N = 8, PMT = 70, FV = 1000, PV = −1065 → I/Y = 5.96%</span></li>
+    </ul>
+    <div class="answer-line">The yield to maturity is approximately 5.96%.</div>
+  </details>
+</div>
+
+<p>
+  Notice the logic in step 2: because the bond trades at a premium, the YTM must be below the coupon rate. This is the inverse of the pricing relationship we established — if price > par, yield < coupon rate. Use this as a quick reasonableness check on your answer.
+</p>
+
+<h3>Three Yield Measures</h3>
+
+<p>
+  Students sometimes confuse three different measures of bond return. They measure different things, and it's important to know which is which:
+</p>
+
+<p>
+  The <span class="key-term">coupon rate</span> is simply the annual coupon divided by face value. It's set at issuance and never changes. It tells you nothing about the return you'll actually earn at today's market price — it's just a contractual rate.
+</p>
+
+<p>
+  The <span class="key-term">current yield</span> is the annual coupon divided by the bond's <em>current market price</em>. It measures the income return — how much cash you receive each year relative to what you paid. But it ignores any capital gain or loss you'll realize if you hold the bond to maturity. A discount bond will generate a capital gain (you paid less than par, but receive par at maturity), so the current yield understates the total return. A premium bond generates a capital loss, so the current yield overstates the total return.
+</p>
+
+<p>
+  The <span class="key-term">yield to maturity (YTM)</span> captures everything — coupon income plus the capital gain or loss from the price converging to face value at maturity. It's the most complete single measure of a bond's return, and it's the one the market quotes and investors compare.
+</p>
+
+<div class="formula-box">
+  <span class="label">Yield Measures Summary</span>
+  <span class="formula">Coupon Rate = <em>C</em> / <em>F</em></span><br>
+  <span class="formula">Current Yield = <em>C</em> / Price</span><br>
+  <span class="formula">YTM = rate that solves the bond pricing equation</span>
+  <div class="note">
+    For a discount bond: Coupon Rate < Current Yield < YTM<br>
+    For a premium bond: Coupon Rate > Current Yield > YTM<br>
+    For a par bond: Coupon Rate = Current Yield = YTM
+  </div>
+</div>
+
+<!-- EXAMPLE 6 -->
+<div class="example-embed" data-label="Example 6 — Three Yield Measures">
+  <p class="scenario">
+    Green Acre Agriculture has a bond with a 5% annual coupon, $1,000 face value, and 12 years to maturity. The bond currently trades at $920. Compute the coupon rate, current yield, and yield to maturity. What ordering relationship holds among the three?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Coupon rate = <span class="calc">$50 / $1,000 = 5.00%</span></li>
+      <li data-step="2.">Current yield = <span class="calc">$50 / $920 = 5.43%</span></li>
+      <li data-step="3.">YTM: Solve <span class="calc">$920 = $50 × [1 − (1 + r)<sup>−12</sup>] / r + $1,000 / (1 + r)<sup>12</sup></span>. Using a financial calculator: <span class="calc">N = 12, PMT = 50, FV = 1000, PV = −920 → I/Y = 5.95%</span></li>
+      <li data-step="4.">Ordering: 5.00% < 5.43% < 5.95%. This is the discount bond pattern — the coupon rate is lowest, the YTM is highest, and the current yield falls in between.</li>
+    </ul>
+    <div class="answer-line">Coupon rate = 5.00%, Current yield = 5.43%, YTM = 5.95%. For a discount bond: Coupon Rate < Current Yield < YTM.</div>
+  </details>
+</div>
+
+<p>
+  The ordering makes intuitive sense. The current yield is higher than the coupon rate because you paid less than face value — your $50 coupon is a bigger fraction of the $920 price than of the $1,000 face value. The YTM is higher still because it also accounts for the capital gain: you paid $920 but will receive $1,000 at maturity, and that $80 gain boosts your total return beyond just the coupon income.
+</p>
+
+<!-- ============================================================ -->
+<!-- PART D: INTEREST RATE RISK -->
+<!-- ============================================================ -->
+<h2>Part D — Interest Rate Risk</h2>
+
+<p>
+  We've established that bond prices move inversely with interest rates. But <em>how much</em> a bond's price moves depends on the bond's characteristics. This sensitivity is called <span class="key-term">interest rate risk</span> — the risk that changes in market interest rates will cause a bond's price to fluctuate. Not all bonds are equally exposed.
+</p>
+
+<p>
+  Two factors determine how much interest rate risk a bond carries: maturity and coupon rate. Understanding why each matters builds real intuition about how bonds behave.
+</p>
+
+<h3>The Maturity Effect</h3>
+
+<p>
+  Longer-maturity bonds are more sensitive to rate changes than shorter-maturity bonds. The reason is that longer bonds have more cash flows in the distant future, and distant cash flows are more sensitive to the discount rate. Think about it this way: if you discount a payment arriving in 2 years, a 1% change in the rate barely moves the present value. But if you discount a payment arriving in 20 years, that same 1% change compounds over 20 periods and moves the present value significantly.
+</p>
+
+<!-- EXAMPLE 7 -->
+<div class="example-embed" data-label="Example 7 — Maturity and Interest Rate Risk">
+  <p class="scenario">
+    Consider two bonds, both with 6% annual coupons and $1,000 face values. Bond A has 5 years to maturity; Bond B has 20 years. Both are currently yielding 6% (i.e., both trade at par). If market interest rates rise from 6% to 8%, what happens to each bond's price? Which bond suffers a greater percentage loss?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Both bonds start at $1,000.00 (since coupon rate = YTM = 6%).</li>
+      <li data-step="2.">Bond A at 8%: <span class="calc">$60 × [1 − (1.08)<sup>−5</sup>] / 0.08 + $1,000 / (1.08)<sup>5</sup> = $239.56 + $680.58 = $920.15</span></li>
+      <li data-step="3.">Bond B at 8%: <span class="calc">$60 × [1 − (1.08)<sup>−20</sup>] / 0.08 + $1,000 / (1.08)<sup>20</sup> = $589.09 + $214.55 = $803.64</span></li>
+      <li data-step="4.">Bond A falls from $1,000.00 to $920.15 — a decline of <span class="calc">7.99%</span>.</li>
+      <li data-step="5.">Bond B falls from $1,000.00 to $803.64 — a decline of <span class="calc">19.64%</span>.</li>
+    </ul>
+    <div class="answer-line">The 20-year bond loses 19.64% of its value vs. 7.99% for the 5-year bond. Longer maturity means greater interest rate risk.</div>
+  </details>
+</div>
+
+<p>
+  The 20-year bond lost nearly two and a half times as much value as the 5-year bond for the same 2-percentage-point rate increase. This is why investors who are nervous about rising rates tend to shorten the maturity of their bond holdings — shorter bonds are simply less volatile.
+</p>
+
+<h3>The Coupon Effect</h3>
+
+<p>
+  The second factor is less obvious: <em>lower-coupon bonds have more interest rate risk than higher-coupon bonds</em>, all else equal. Here's the intuition. A high-coupon bond returns more of your investment sooner (through the larger coupon payments), so its value is less dependent on the distant face-value payment. A low-coupon bond, by contrast, has more of its value concentrated in the face-value repayment at maturity — that distant, lump-sum cash flow is exactly the part most sensitive to rate changes.
+</p>
+
+<!-- EXAMPLE 8 -->
+<div class="example-embed" data-label="Example 8 — Coupon Rate and Interest Rate Risk">
+  <p class="scenario">
+    Two 10-year, $1,000 face value bonds are both currently yielding 6%. Bond X has a 2% coupon; Bond Y has a 10% coupon. If rates rise from 6% to 8%, which bond experiences the larger percentage price decline?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Bond X (2% coupon) at 6%: <span class="calc">$20 × 7.3601 + $1,000 / 1.7908 = $147.21 + $558.39 = $705.60</span></li>
+      <li data-step="2.">Bond X (2% coupon) at 8%: <span class="calc">$20 × 6.7101 + $1,000 / 2.1589 = $134.21 + $463.19 = $597.40</span></li>
+      <li data-step="3.">Bond X % decline: <span class="calc">($597.40 − $705.60) / $705.60 = −15.33%</span></li>
+      <li data-step="4.">Bond Y (10% coupon) at 6%: <span class="calc">$100 × 7.3601 + $1,000 / 1.7908 = $736.01 + $558.39 = $1,294.40</span></li>
+      <li data-step="5.">Bond Y (10% coupon) at 8%: <span class="calc">$100 × 6.7101 + $1,000 / 2.1589 = $671.01 + $463.19 = $1,134.20</span></li>
+      <li data-step="6.">Bond Y % decline: <span class="calc">($1,134.20 − $1,294.40) / $1,294.40 = −12.38%</span></li>
+    </ul>
+    <div class="answer-line">The 2% coupon bond loses 15.33% vs. 12.38% for the 10% coupon bond. Lower coupon → greater interest rate risk.</div>
+  </details>
+</div>
+
+<p>
+  To summarize: interest rate risk is highest for bonds that are long-maturity <em>and</em> low-coupon. These are the bonds where the most value is concentrated in distant cash flows. Conversely, short-maturity, high-coupon bonds have the least interest rate risk. This is useful when constructing a portfolio: if you expect rates to rise, you'd prefer shorter, higher-coupon bonds. If you expect rates to fall, longer, lower-coupon bonds will give you the most price appreciation.
+</p>
+
+<!-- ============================================================ -->
+<!-- PART E: BOND RATINGS AND CREDIT RISK -->
+<!-- ============================================================ -->
+<h2>Part E — Bond Ratings, Credit Risk, and the Yield Puzzle</h2>
+
+<p>
+  So far, we've treated the bond's promised cash flows as certain. But in reality, there's always a chance the issuer can't make its payments — the company might hit financial trouble, or in the extreme case, file for bankruptcy. This possibility is called <span class="key-term">default risk</span> (or <span class="key-term">credit risk</span>), and it's a central concern for bond investors.
+</p>
+
+<p>
+  To help investors assess default risk, independent agencies — most notably Moody's, Standard & Poor's (S&P), and Fitch — assign <span class="key-term">bond ratings</span> that reflect the issuer's creditworthiness. The rating scales differ slightly across agencies, but the logic is the same: higher ratings mean lower default risk.
+</p>
+
+<p>
+  The highest-quality bonds are rated AAA (S&P) or Aaa (Moody's). These are issuers with extremely strong capacity to meet their financial obligations — think of the U.S. government (though even sovereign ratings can change, as the U.S. discovered when S&P downgraded it in 2011). Investment-grade bonds range from AAA down to BBB− (or Baa3). Below that threshold, bonds are classified as <span class="key-term">high-yield bonds</span> (sometimes called "junk bonds") — rated BB+ and below. High-yield issuers have a materially higher probability of default, which is precisely why they must offer higher yields to attract investors.
+</p>
+
+<p>
+  The relationship between ratings and yields is intuitive: investors demand compensation for bearing default risk. A bond rated BBB will offer a higher yield than an otherwise identical bond rated AAA, because the BBB bond has a greater chance of not paying as promised. The difference in yields between a risky bond and a risk-free benchmark (typically a Treasury bond of similar maturity) is called the <span class="key-term">credit spread</span> or <span class="key-term">default risk premium</span>.
+</p>
+
+<!-- EXAMPLE 9 -->
+<div class="example-embed" data-label="Example 9 — Interpreting Bond Ratings and Yield Spreads">
+  <p class="scenario">
+    Blue Acre Industries carries an A rating from S&P. Its 10-year bonds yield 5.8%. A comparable 10-year Treasury bond yields 4.2%, and 10-year bonds from White Acre Manufacturing (rated BBB) yield 6.5%. What is Blue Acre's credit spread? Why does White Acre's yield exceed Blue Acre's?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Blue Acre's credit spread = 5.8% − 4.2% = <span class="calc">1.60 percentage points (160 basis points)</span></li>
+      <li data-step="2.">White Acre's credit spread = 6.5% − 4.2% = <span class="calc">2.30 percentage points (230 basis points)</span></li>
+      <li data-step="3.">White Acre yields more because its BBB rating reflects higher default risk than Blue Acre's A rating. Investors require a larger premium to compensate for the greater chance of missed payments or principal loss.</li>
+    </ul>
+    <div class="answer-line">Blue Acre's credit spread is 160 basis points. White Acre yields more because its lower credit rating signals higher default risk, and investors demand a larger premium for bearing that risk.</div>
+  </details>
+</div>
+
+<p>
+  A <span class="key-term">basis point</span> is 1/100th of a percentage point (0.01%), so 160 basis points = 1.60%. Bond traders quote spreads in basis points because rate differences are often small, and it avoids the awkwardness of saying "one point six zero percent" when "160 basis points" is cleaner.
+</p>
+
+<p>
+  Credit spreads aren't fixed — they widen during economic downturns (when investors become more worried about defaults) and narrow during expansions (when default risk seems lower). This dynamic is part of why bond markets are sensitive barometers of economic sentiment. We'll formalize the relationship between risk and return much more carefully when we study the Capital Asset Pricing Model in Week 9.
+</p>
+
+<!-- EXAMPLE 10 -->
+<div class="example-embed" data-label="Example 10 — Bond Features and Risk Assessment">
+  <p class="scenario">
+    Red Acre Industries is considering two bond issues to raise capital. Option 1: A 10-year senior secured bond with a 5% coupon. Option 2: A 10-year subordinated unsecured bond with a 7% coupon. Both have $1,000 face values. Why would Red Acre need to offer a higher coupon on the subordinated bond? As an investor, what additional information would you want before choosing between them?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">The subordinated unsecured bond is riskier on two dimensions: it ranks lower in priority during bankruptcy (subordinated vs. senior), and it has no collateral backing (unsecured vs. secured). In a default, the senior secured bondholders would be paid first from the sale of pledged assets.</li>
+      <li data-step="2.">Because investors bear more default risk with the subordinated bond, they demand a higher coupon (or equivalently, will only buy it at a lower price). The 2% coupon difference is the compensation for the additional risk.</li>
+      <li data-step="3.">Before choosing, you'd want to know: Red Acre's credit rating, the specific collateral backing the secured bond, the firm's financial health (debt ratios, cash flows), and whether either bond has a call provision.</li>
+    </ul>
+    <div class="answer-line">Higher risk (subordinated + unsecured) demands higher compensation. The 7% coupon on the riskier bond reflects the market's pricing of that additional default risk.</div>
+  </details>
+</div>
+
+<p>
+  This example brings together several ideas: seniority, security, credit risk, and the principle that risk and return go together. A bond isn't just defined by its coupon and maturity — its position in the capital structure and the issuer's overall creditworthiness determine whether those promised cash flows will actually arrive.
+</p>
+
+<!-- ============================================================ -->
+<!-- PART F: PUTTING IT ALL TOGETHER -->
+<!-- ============================================================ -->
+<h2>Part F — Connecting the Pieces</h2>
+
+<p>
+  Let's step back and see the full picture. Bond valuation is fundamentally a time-value-of-money exercise — you discount a known stream of cash flows at a rate that reflects the bond's risk. Everything we've covered this week follows from that core idea:
+</p>
+
+<p>
+  The <em>bond pricing formula</em> combines the annuity formula (for coupons) and the lump-sum formula (for face value). If the coupon rate exceeds the YTM, the bond trades at a premium; if the coupon rate is below the YTM, it trades at a discount; if they're equal, it trades at par. Semiannual bonds require halving the coupon, halving the rate, and doubling the periods.
+</p>
+
+<p>
+  <em>Yield to maturity</em> is the discount rate implied by the market price — it's the total return an investor earns from coupons plus any capital gain or loss. It captures more than the coupon rate or the current yield alone.
+</p>
+
+<p>
+  <em>Interest rate risk</em> varies across bonds: longer maturity and lower coupons mean greater price sensitivity. These relationships help you understand why different bonds respond differently to the same rate change.
+</p>
+
+<p>
+  <em>Credit risk</em> adds another dimension: not all promised cash flows are equally certain. Ratings, seniority, and security features determine how much additional yield investors demand beyond the risk-free rate.
+</p>
+
+<p>
+  Next week, we'll turn from debt to equity and ask the same fundamental question: what is a share of stock worth? We'll formalize this idea when we study dividend discount models in Week 4. Spoiler: the logic is the same — price equals the present value of expected future cash flows — but the cash flows from stocks are less predictable than the contractual payments from bonds, which makes the valuation both more powerful and more uncertain.
+</p>
+
+<!-- ============================================================ -->
+<!-- KEY FORMULAS REFERENCE -->
+<!-- ============================================================ -->
+<h2>Key Formulas Reference</h2>
+
+<table class="formula-ref">
+  <thead>
+    <tr>
+      <th>Formula</th>
+      <th>Expression</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Bond Price (annual coupon)</td>
+      <td><em>C</em> × [1 − (1 + <em>r</em>)<sup>−<em>t</em></sup>] / <em>r</em> + <em>F</em> / (1 + <em>r</em>)<sup><em>t</em></sup></td>
+    </tr>
+    <tr>
+      <td>Bond Price (semiannual)</td>
+      <td>(<em>C</em>/2) × [1 − (1 + <em>r</em>/2)<sup>−2<em>t</em></sup>] / (<em>r</em>/2) + <em>F</em> / (1 + <em>r</em>/2)<sup>2<em>t</em></sup></td>
+    </tr>
+    <tr>
+      <td>Coupon Rate</td>
+      <td><em>C</em> / <em>F</em></td>
+    </tr>
+    <tr>
+      <td>Current Yield</td>
+      <td><em>C</em> / Price</td>
+    </tr>
+    <tr>
+      <td>Yield to Maturity</td>
+      <td>Rate <em>r</em> that solves: Price = <em>C</em> × [1 − (1+<em>r</em>)<sup>−<em>t</em></sup>] / <em>r</em> + <em>F</em> / (1+<em>r</em>)<sup><em>t</em></sup></td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="font-size: 0.9rem; color: var(--muted); margin-top: 0.5rem;">
+  <strong>Yield measure ordering:</strong> For a discount bond, Coupon Rate &lt; Current Yield &lt; YTM. For a premium bond, Coupon Rate &gt; Current Yield &gt; YTM. For a par bond, all three are equal.
+</p>
+
+<!-- ============================================================ -->
+<!-- PRACTICE PROBLEMS -->
+<!-- ============================================================ -->
+<h2>Practice Problems</h2>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 1</span>
+    <span class="skill-tag">[W3.1]</span>
+  </div>
+  <p>Green Acre Agriculture has a bond with a 7% annual coupon, a $1,000 face value, and 12 years to maturity. If bonds of similar risk are currently yielding 9%, what is the price of this bond? Is it trading at a premium or a discount?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 2</span>
+    <span class="skill-tag">[W3.1]</span>
+  </div>
+  <p>A bond has a 5.5% coupon rate with semiannual payments, a $1,000 face value, and 20 years to maturity. The yield to maturity is 6%. What is the bond's price?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 3</span>
+    <span class="skill-tag">[W3.2]</span>
+  </div>
+  <p>Blue Acre Industries has a bond with an 8% annual coupon, a $1,000 face value, and 6 years to maturity. The bond is currently trading at $1,052. What is its yield to maturity?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 4</span>
+    <span class="skill-tag">[W3.5]</span>
+  </div>
+  <p>A bond has a 4.5% annual coupon, a $1,000 face value, and 15 years to maturity. It currently trades at $850. Compute the coupon rate, current yield, and yield to maturity. Verify that the ordering relationship for a discount bond holds.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 5</span>
+    <span class="skill-tag">[W3.3, W3.4]</span>
+  </div>
+  <p>Two bonds both have 4% annual coupons and $1,000 face values. Bond A has 5 years to maturity; Bond B has 25 years. Both currently yield 6%. If market interest rates rise to 7%, compute the new price and percentage change for each bond. Which bond is riskier, and why?</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 6</span>
+    <span class="skill-tag">[W3.3]</span>
+  </div>
+  <p>Explain, in two to three sentences, why a bond must sell at exactly par value when its coupon rate equals the yield to maturity. Your explanation should reference the relationship between the coupon payments and the discount rate, not just restate the rule.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 7</span>
+    <span class="skill-tag">[W3.1, W3.3, W3.4]</span>
+  </div>
+  <p>You're considering two bonds, both with $1,000 face values, annual coupons, and 10 years to maturity, both currently yielding 7%. Bond X has a 9% coupon; Bond Y has a 5% coupon. Suppose you expect interest rates to fall to 5% over the next year. After one year (with 9 years remaining), which bond would have experienced a greater percentage price increase? Compute both and recommend which to buy if you believe rates will fall.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 8</span>
+    <span class="skill-tag">[W3.6, W3.7]</span>
+  </div>
+  <p>Red Acre Industries (rated A) and Orange Acre Logistics (rated BB) are both issuing 10-year bonds. Red Acre offers a 5.2% coupon; Orange Acre offers a 7.8% coupon. Both are unsecured. Explain why Orange Acre must offer the higher coupon. If the economy enters a recession and default risk increases across all firms, what would you expect to happen to the credit spread between these two bonds? Why?</p>
+</div>
+
+</body>
+</html>
