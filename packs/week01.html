@@ -19,6 +19,19 @@
   --problem-bg: #fff8f0;
   --solution-bg: #eaf5ea;
 }
+[data-theme="dark"] {
+  --bg: #141516;
+  --text: #d6d3cd;
+  --accent: #b8845a;
+  --accent-light: #1b1815;
+  --border: #2e2f31;
+  --muted: #8a857e;
+  --formula-bg: #1a1b1c;
+  --example-border: #2e2f31;
+  --problem-bg: #1b1815;
+  --solution-bg: #131f13;
+}
+
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -139,7 +152,7 @@ h3 {
 
 /* ---- Example (collapsible solution) ---- */
 .example-embed {
-  background: #ffffff;
+  background: var(--bg);
   border: 1px solid var(--example-border);
   border-radius: 5px;
   padding: 1.3rem 1.6rem;
@@ -291,7 +304,53 @@ h3 {
 .nav-link a:hover {
   text-decoration: underline;
 }
+
+/* ---- Theme Toggle ---- */
+.theme-toggle {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 100;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+  border-radius: 1rem;
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+  font-size: 1.05rem;
+  line-height: 1;
+  color: var(--accent);
+  transition: background 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.theme-toggle:hover {
+  background: var(--formula-bg);
+}
+.toggle-icon {
+  transition: opacity 0.2s;
+  display: inline;
+}
+.light-icon { opacity: 1; }
+.dark-icon { opacity: 0.3; }
+[data-theme="dark"] .light-icon { opacity: 0.3; }
+[data-theme="dark"] .dark-icon { opacity: 1; }
+
 @media print {
+  :root {
+    --bg: #ffffff;
+    --text: #000000;
+    --accent: #c75000;
+    --accent-light: #fff3ec;
+    --border: #d4d0c8;
+    --muted: #6b6560;
+    --formula-bg: #f5f5f5;
+    --example-border: #d4d0c8;
+    --problem-bg: #fff8f0;
+    --solution-bg: #eaf5ea;
+  }
+  .theme-toggle { display: none; }
   body { padding: 0.5in; max-width: none; font-size: 10pt; }
   .course-header { page-break-after: avoid; }
   .example-embed, .problem, .formula-box { page-break-inside: avoid; }
@@ -302,6 +361,11 @@ h3 {
   </style>
 </head>
 <body>
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+  <span class="toggle-icon light-icon">☀︎</span>
+  <span class="toggle-icon dark-icon">☾</span>
+</button>
+
 
 <!-- ============================================================ -->
 <!-- HEADER                                                        -->
@@ -758,6 +822,42 @@ h3 {
   </div>
   <p>The CEO of Red Acre Industries is evaluating two projects. Project A generates $500,000 in profit over 2 years. Project B generates $500,000 in profit over 5 years. The CEO argues they're equally valuable because total profit is the same. (a) Explain why this reasoning is flawed from the perspective of shareholder wealth maximization. (b) If the CEO prefers Project B because it ensures her job security for 5 years rather than 2, what kind of problem does this illustrate, and what mechanisms might the board use to address it?</p>
 </div>
+
+<script>
+(function() {
+  var STORAGE_KEY = 'coursepack-theme';
+  var html = document.documentElement;
+  var toggle = document.getElementById('themeToggle');
+
+  var saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) {
+    html.setAttribute('data-theme', saved);
+  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    html.setAttribute('data-theme', 'dark');
+  }
+
+  toggle.addEventListener('click', function() {
+    var current = html.getAttribute('data-theme');
+    var next = current === 'dark' ? 'light' : 'dark';
+    if (next === 'light') {
+      html.removeAttribute('data-theme');
+    } else {
+      html.setAttribute('data-theme', 'dark');
+    }
+    localStorage.setItem(STORAGE_KEY, next);
+  });
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+    if (!localStorage.getItem(STORAGE_KEY)) {
+      if (e.matches) {
+        html.setAttribute('data-theme', 'dark');
+      } else {
+        html.removeAttribute('data-theme');
+      }
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
