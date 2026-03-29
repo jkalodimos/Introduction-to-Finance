@@ -1,6 +1,6 @@
-# BA 240H — Introduction to Finance
+# Introduction to Finance
 
-Course materials for BA 240H at Oregon State University, Spring 2026.
+Course materials for Introduction to Finance at Oregon State University.
 
 **[→ View materials](https://jkalodimos.github.io/Introduction-to-Finance/)**
 
@@ -14,8 +14,6 @@ Materials are posted as they become available throughout the term.
 ## Using these materials
 
 Course packs are self-contained HTML files. Open them in any browser. Print-friendly styles are built in — use your browser's print function or save as PDF.
-
-DOCX versions for in-class note-taking are available on Canvas.
 
 ## License
 
