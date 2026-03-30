@@ -2,7 +2,7 @@
 
 Course materials for Introduction to Finance at Oregon State University.
 
-**[→ View materials](https://jkalodimos.github.io/Introduction-to-Finance/)**
+**[→ View materials](https://jkalodimos.github.io/introduction-to-finance/)**
 
 ## Contents
 
