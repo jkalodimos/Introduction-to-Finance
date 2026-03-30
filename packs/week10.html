@@ -324,8 +324,46 @@ h3 {
 [data-theme="dark"] .light-icon { opacity: 0.3; }
 [data-theme="dark"] .dark-icon { opacity: 1; }
 
+/* ---- Responsive: Tablet (768px) ---- */
+@media (max-width: 768px) {
+  body { padding: 2rem 1.8rem; }
+  .formula-box { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .formula-ref { overflow-x: auto; }
+  .example-embed .steps li .calc { overflow-wrap: break-word; }
+}
+
+/* ---- Responsive: Phone (600px) ---- */
 @media (max-width: 600px) {
   body { padding: 1.5rem 1.2rem 3rem; }
+  .course-header { padding-right: 4rem; }
+  .course-header h1 { font-size: 1.45rem; }
+  h2 { font-size: 1.2rem; }
+  .example-embed { padding: 1.1rem 1rem; }
+  .example-embed::before { font-size: 0.65rem; padding: 0.15rem 0.5rem; }
+  .formula-box { padding: 0.9rem 1rem; }
+  .formula-box .formula { font-size: 0.95rem; overflow-wrap: break-word; }
+  .formula-ref td:first-child { white-space: normal; }
+  table.formula-ref td:first-child { white-space: normal; }
+  .figure { padding: 0.8rem 0.5rem 0.4rem; }
+  .figure svg { max-width: 100%; height: auto; }
+}
+
+/* ---- Responsive: Small Phone (480px) ---- */
+@media (max-width: 480px) {
+  body { padding: 1.2rem 1rem 3rem; font-size: 1rem; }
+  .course-header h1 { font-size: 1.3rem; }
+  h2 { font-size: 1.1rem; margin-top: 2rem; }
+  .example-embed { padding: 1rem 0.8rem; }
+  .example-embed::before { font-size: 0.6rem; left: 0.8rem; }
+  .example-embed .steps li { padding-left: 1.3rem; font-size: 0.93rem; }
+  .example-embed .steps li .calc { font-size: 0.85rem; }
+  .example-embed .answer-line { font-size: 0.93rem; padding: 0.45rem 0.65rem; }
+  .formula-box .formula { font-size: 0.85rem; }
+  .skills-list { padding: 0.8rem 1rem; }
+  .skills-list li { font-size: 0.9rem; }
+  .problem { padding: 0.9rem 1rem; }
+  .theme-toggle { top: 0.8rem; right: 0.8rem; font-size: 0.9rem; padding: 0.2rem 0.45rem; }
+}
   .course-header { padding-right: 4rem; }
 }
 @media print {
