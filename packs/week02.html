@@ -794,11 +794,11 @@ Ten annual contributions of $3,793.40 total $37,934 in deposits. The remaining $
 <h3>Why Quoted Rates Can Be Misleading</h3>
 
 <p>
-When a bank advertises a savings account at "5.2% APR, compounded quarterly" or a credit card at "18% APR, compounded monthly," the quoted rate doesn't tell you exactly how much interest you'll actually earn or owe over a year. That's because the <span class="key-term">annual percentage rate (APR)</span> — also called the stated rate or quoted rate — is simply the periodic rate multiplied by the number of periods per year. It does not account for compounding <em>within</em> the year.
+When a bank advertises a savings account at "5.2% APR, compounded quarterly" or a credit card at "18% APR, compounded daily," the quoted rate doesn't tell you exactly how much interest you'll actually earn or owe over a year. That's because the <span class="key-term">annual percentage rate (APR)</span> — also called the stated rate or quoted rate — is simply the periodic rate multiplied by the number of periods per year. It does not account for compounding <em>within</em> the year.
 </p>
 
 <p>
-For example, if a credit card charges 1.5% per month, the APR is 1.5% × 12 = 18%. But you don't actually owe just 18% per year, because the interest charged in January starts compounding in February, and so on. The actual annual rate, accounting for this within-year compounding, is higher. This true rate is called the <span class="key-term">effective annual rate (EAR)</span>, and it's what you actually experience.
+For example, a credit card advertised at "18% APR" typically charges interest each day on your outstanding balance — roughly 0.0493% per day (18% ÷ 365). That daily interest gets added to your balance immediately, so the next day's interest is computed on a slightly larger amount, and the day after that, and so on for 365 days. The actual annual rate, accounting for this within-year compounding, is higher than 18%. This true rate is called the <span class="key-term">effective annual rate (EAR)</span>, and it's what you actually experience.
 </p>
 
 <div class="formula-box">
@@ -815,16 +815,16 @@ The EAR is always greater than or equal to the APR. They're equal only when <em>
 
 <div class="example-embed" data-label="Example 8 — Credit Card EAR">
   <p class="scenario">
-    A credit card advertises an APR of 18%, compounded monthly. What is the effective annual rate you're actually paying?
+    A credit card advertises an APR of 18%, compounded daily. What is the effective annual rate you're actually paying?
   </p>
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Identify: APR = 0.18, <em>m</em> = 12</li>
-      <li data-step="2.">Apply the EAR formula: <span class="calc">EAR = (1 + 0.18 ÷ 12)<sup>12</sup> − 1 = (1.015)<sup>12</sup> − 1</span></li>
-      <li data-step="3.">Calculate: <span class="calc">EAR = 1.195618 − 1 = 0.1956 = 19.56%</span></li>
+      <li data-step="1.">Identify: APR = 0.18, <em>m</em> = 365</li>
+      <li data-step="2.">Apply the EAR formula: <span class="calc">EAR = (1 + 0.18 ÷ 365)<sup>365</sup> − 1</span></li>
+      <li data-step="3.">Calculate: <span class="calc">EAR = 1.197164 − 1 = 0.1972 = 19.72%</span></li>
     </ul>
-    <div class="answer-line">The effective annual rate is 19.56% — more than 1.5 percentage points above the quoted 18%.</div>
+    <div class="answer-line">The effective annual rate is 19.72% — about 1.7 percentage points above the quoted 18%. Daily compounding makes the gap bigger than it would be under monthly compounding.</div>
   </details>
 </div>
 
@@ -834,21 +834,21 @@ This matters for comparison shopping. When you're choosing between two financial
 
 <div class="example-embed" data-label="Example 9 — Comparing Savings Accounts">
   <p class="scenario">
-    Bank A offers a savings account at 5.2% APR, compounded quarterly. Bank B offers 5.1% APR, compounded daily. Which account actually pays more?
+    Bank A offers a savings account at 5.10% APR, compounded annually. Bank B offers 5.00% APR, compounded daily. Which account actually pays more?
   </p>
   <details>
     <summary>Show Solution</summary>
     <ul class="steps">
-      <li data-step="1.">Bank A: APR = 0.052, <em>m</em> = 4 → <span class="calc">EAR = (1 + 0.052 ÷ 4)<sup>4</sup> − 1 = (1.013)<sup>4</sup> − 1 = 0.053023 = 5.30%</span></li>
-      <li data-step="2.">Bank B: APR = 0.051, <em>m</em> = 365 → <span class="calc">EAR = (1 + 0.051 ÷ 365)<sup>365</sup> − 1 = 0.052319 = 5.23%</span></li>
-      <li data-step="3.">Compare: Bank A's EAR (5.30%) > Bank B's EAR (5.23%)</li>
+      <li data-step="1.">Bank A: APR = 0.0510, <em>m</em> = 1 → <span class="calc">EAR = (1 + 0.0510 ÷ 1)<sup>1</sup> − 1 = 0.0510 = 5.10%</span></li>
+      <li data-step="2.">Bank B: APR = 0.0500, <em>m</em> = 365 → <span class="calc">EAR = (1 + 0.0500 ÷ 365)<sup>365</sup> − 1 = 0.051267 = 5.13%</span></li>
+      <li data-step="3.">Compare: Bank B's EAR (5.13%) > Bank A's EAR (5.10%)</li>
     </ul>
-    <div class="answer-line">Bank A pays more, despite Bank B compounding more frequently. The higher APR outweighs the compounding advantage.</div>
+    <div class="answer-line">Bank B pays more, even though its headline APR is lower. Daily compounding closes the 10 bp APR gap and then adds another 3 bp on top.</div>
   </details>
 </div>
 
 <p>
-This example drives home the lesson: more frequent compounding helps, but it can't overcome a meaningfully lower stated rate. When comparing financial products, always convert to EAR first, then decide.
+This example drives home the lesson: a difference in compounding frequency can flip the ranking of two accounts that look similar on APR. The headline rate alone is misleading when the compounding frequencies differ. When comparing financial products, always convert to EAR first, then decide.
 </p>
 
 <!-- ============================================================ -->
@@ -1101,7 +1101,7 @@ This is a preview of how the same TVM toolkit we're building now connects direct
     <span class="problem-number">Problem 5</span>
     <span class="skill-tag">[W2.5]</span>
   </div>
-  <p>You're choosing between two savings accounts. Account A offers 6.1% APR compounded semiannually. Account B offers 6.0% APR compounded monthly. Compute the EAR for each account and determine which one actually pays more.</p>
+  <p>You're choosing between two savings accounts. Account A offers 6.05% APR compounded semiannually. Account B offers 6.00% APR compounded monthly. Compute the EAR for each account and determine which one actually pays more.</p>
 </div>
 
 <div class="problem">
