@@ -480,7 +480,7 @@ table.data-table td {
 <div class="course-header">
   <div class="course-id">Introduction to Finance &middot; Jonathan Kalodimos</div>
   <h1>Week 7 Course Pack</h1>
-  <div class="subtitle">NPV vs. IRR Conflicts &amp; Capital Market History</div>
+  <div class="subtitle">NPV vs. IRR Conflicts, Capital Market History &amp; Market Efficiency</div>
 </div>
 
 <div class="nav-link">&larr; <a href="https://jkalodimos.github.io/introduction-to-finance/">All Course Materials</a></div>
@@ -493,6 +493,7 @@ table.data-table td {
     <li><span class="skill-code">W7.3</span> Rank asset classes by historical return and risk, and describe the risk-return tradeoff</li>
     <li><span class="skill-code">W7.4</span> Define the equity risk premium and explain why it exists</li>
     <li><span class="skill-code">W7.5</span> Compute the standard deviation of returns and use it to describe investment risk</li>
+    <li><span class="skill-code">W7.6</span> Explain the efficient markets hypothesis, distinguish its three forms, and apply it to evaluate claims about beating the market</li>
   </ul>
 </div>
 
@@ -935,6 +936,47 @@ table.data-table td {
 
 <p>This is exactly the logic behind the risk-return tradeoff we saw in the historical data. Investors don't just chase returns — they evaluate returns <em>relative to the risk taken</em>. We'll make this idea precise in Week 8 when we study portfolios and diversification, and in Week 9 when we introduce the CAPM.</p>
 
+<h3>The Efficient Markets Hypothesis</h3>
+
+<p>The historical record raises a tempting question: if small stocks have averaged about 16% and T-bills only 3.3%, why doesn't everyone pile into small stocks? And if some years are clearly better than others for a given asset class, why can't a sharp investor just hold cash in the bad years and stocks in the good ones? The <span class="key-term">efficient markets hypothesis (EMH)</span> gives a sharp answer: because the prices you'd need to trade at already reflect everything anyone could reasonably know.</p>
+
+<p>An efficient market is one in which security prices fully and rapidly incorporate available information. When a piece of news arrives — an earnings surprise, a Fed announcement, a merger rumor — competition among traders pushes the price to its new fair value almost instantly. By the time you read the headline, the price has already moved. The implication is uncomfortable but important: in an efficient market, you cannot consistently earn returns above what's justified by the risk you're bearing, because every "obvious" opportunity has already been bid away.</p>
+
+<p>Notice what EMH does <em>not</em> claim. It does not say prices are always correct in some absolute sense — they reflect available information, and information can be incomplete or wrong. It does not say returns are unpredictable in level — risky assets should still earn a risk premium on average, exactly as we just saw in the historical record. It does not say no one ever beats the market — by chance, plenty of investors will. It says you cannot <em>systematically</em> beat the market on a risk-adjusted basis using information that's already out there.</p>
+
+<h3>Three Forms of Market Efficiency</h3>
+
+<p>Economists distinguish three versions of EMH, defined by what counts as "available information."</p>
+
+<p><strong>Weak form.</strong> Prices reflect all information contained in past prices and trading volume. If weak-form efficiency holds, technical analysis — looking for patterns in historical price charts — cannot generate excess returns. The price chart has no predictive power that isn't already in the current price.</p>
+
+<p><strong>Semi-strong form.</strong> Prices reflect all <em>publicly available</em> information — past prices, financial statements, news, analyst reports, economic data, everything you could legally find. If semi-strong efficiency holds, fundamental analysis based on public data also cannot generate excess returns. By the time you've read the 10-K, the market has too.</p>
+
+<p><strong>Strong form.</strong> Prices reflect <em>all</em> information, public and private. If strong-form efficiency holds, even insiders trading on non-public information cannot earn excess returns. This is the most demanding form and is generally not believed to hold — insider trading laws exist, and the SEC cases that enforce them exist, precisely because non-public information <em>does</em> move prices.</p>
+
+<p>The empirical evidence broadly supports weak-form efficiency and is largely consistent with semi-strong efficiency, with some debated anomalies. Strong-form efficiency clearly fails — insiders do profit from private information, which is why trading on it is illegal.</p>
+
+<div class="example-embed" data-label="Example 11 — Identifying Which Form of EMH a Strategy Challenges">
+  <p class="scenario">
+    An analyst at Red Acre Brokerage is debating two strategies with a colleague. Strategy 1: buy stocks whose prices have risen for three consecutive days, on the theory that momentum will continue. Strategy 2: buy stocks of companies that just released better-than-expected earnings, on the theory that the good news signals a strong company. Which form of market efficiency does each strategy challenge?
+  </p>
+  <details>
+    <summary>Show Solution</summary>
+    <ul class="steps">
+      <li data-step="1.">Strategy 1 uses only past price information. If it consistently generated excess returns, it would contradict <em>weak-form</em> efficiency, which says past prices are already incorporated into the current price.</li>
+      <li data-step="2.">Strategy 2 uses publicly released earnings information. If it consistently generated excess returns <em>after</em> the announcement is public, it would contradict <em>semi-strong-form</em> efficiency.</li>
+      <li data-step="3.">Empirically: simple price-pattern strategies don't reliably work after trading costs, supporting weak-form efficiency. Post-earnings-announcement drift is a documented anomaly that has challenged semi-strong efficiency, though the effect has weakened over time as more traders have learned to exploit it — which is itself evidence of efficiency at work.</li>
+    </ul>
+    <div class="answer-line">Strategy 1 challenges weak-form EMH. Strategy 2 challenges semi-strong-form EMH. The fact that profitable strategies tend to weaken once they're widely known is a hallmark of how markets become efficient.</div>
+  </details>
+</div>
+
+<h3>What EMH Means for You</h3>
+
+<p>If markets are reasonably efficient, three practical conclusions follow. First, on average, low-cost index funds will outperform actively managed funds, because the active manager's research and trading costs are deducted from returns that are unlikely to exceed the index on a risk-adjusted basis. Second, a stock's current price is a reasonable estimate of its value — if you think a stock is "obviously" mispriced, ask what you know that the market doesn't. Third, for corporate finance — our central concern in this course — market prices give managers a useful signal about the cost of capital and the value of the firm, because those prices reflect the collective judgment of informed participants.</p>
+
+<p>This last point is why EMH matters for the rest of the course. When we discount cash flows at a market-determined required return in Weeks 8–10, we are implicitly trusting that the market's assessment of risk and return is approximately right. EMH is the conceptual justification for that trust.</p>
+
 
 <!-- ============================================================ -->
 <!-- KEY FORMULAS REFERENCE                                        -->
@@ -1048,6 +1090,14 @@ table.data-table td {
     <span class="skill-tag">[W7.2, W7.3]</span>
   </div>
   <p>Explain in your own words why the geometric average return is always less than or equal to the arithmetic average return (they're equal only when returns are identical every year). Then explain when you would use each average and why. Give a concrete example of a situation where using the wrong average would lead to a misleading conclusion.</p>
+</div>
+
+<div class="problem">
+  <div class="problem-header">
+    <span class="problem-number">Problem 9</span>
+    <span class="skill-tag">[W7.6]</span>
+  </div>
+  <p>An investment newsletter from Red Acre Brokerage claims it can identify undervalued stocks by carefully analyzing publicly available financial statements, and reports that its recommendations have outperformed the S&amp;P 500 in three of the last five years. (a) Which form of market efficiency does the newsletter's claimed strategy challenge, and why? (b) Does outperforming the market in three of five years constitute strong evidence against that form of efficiency? Explain. (c) What additional information would you want before deciding whether to subscribe?</p>
 </div>
 
 <script>
